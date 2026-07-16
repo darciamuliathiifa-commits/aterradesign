@@ -111,35 +111,58 @@ function LotCard({
 
   const inner = (
     <div className="bg-[var(--paper)] flex flex-col relative" style={cardStyle}>
-      {/* Origin photo flush at top */}
+      {/* Origin photo flush at top — stamp lives here, over the photo only */}
       <div
-        className="w-full overflow-hidden shrink-0"
+        className="w-full shrink-0 relative"
         style={{ aspectRatio: '3/2', borderBottom: '1px solid var(--ink)' }}
       >
-        <img
-          src={`${import.meta.env.BASE_URL}${origin.image}`}
-          alt={`${origin.name} coffee origin`}
-          className="photo-filter w-full h-full object-cover"
-          loading="lazy"
-          width={600}
-          height={400}
-        />
-      </div>
+        {/* Inner div clips the image to the aspect-ratio box */}
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src={`${import.meta.env.BASE_URL}${origin.image}`}
+            alt={`${origin.name} coffee origin`}
+            className="photo-filter w-full h-full object-cover"
+            loading="lazy"
+            width={600}
+            height={400}
+          />
+        </div>
 
-      {/* Card body */}
-      <div className="flex flex-col flex-1 relative" style={{ padding: '1.25rem' }}>
+        {/* Stamp: top-right corner of the photo, never overlaps text */}
         {origin.stamp && (
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.2 }}
-            whileInView={shouldReduceMotion ? { opacity: 0.92 } : { opacity: 0.92, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 15, delay: 0.2 }}
-            className="absolute top-3 right-3 rubber-stamp z-10"
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.05 }}
+            whileInView={shouldReduceMotion ? { opacity: 0.95 } : { opacity: 0.95, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.15 }}
+            style={{
+              position: 'absolute',
+              top: '14px',
+              right: '14px',
+              zIndex: 10,
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '11px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '1.5px',
+              color: '#B3372B',
+              border: '2px solid #B3372B',
+              background: '#F2ECDD',
+              padding: '6px 10px',
+              transform: 'rotate(-3deg)',
+              whiteSpace: 'nowrap',
+              maxWidth: '60%',
+              lineHeight: 1.3,
+              opacity: 0.95,
+            }}
           >
             {origin.stamp}
           </motion.div>
         )}
+      </div>
 
-        <div className="font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase tracking-[0.1em] font-semibold text-sm mb-3 pr-10">
+      {/* Card body — no stamps, no overlapping elements */}
+      <div className="flex flex-col flex-1 relative" style={{ padding: '1.25rem' }}>
+        <div className="font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase tracking-[0.1em] font-semibold text-sm mb-3">
           {origin.lot} — {origin.name.toUpperCase()}
         </div>
 
