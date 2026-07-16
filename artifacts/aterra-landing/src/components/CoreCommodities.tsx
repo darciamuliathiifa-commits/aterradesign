@@ -65,13 +65,13 @@ export function CoreCommodities() {
               className="group cursor-pointer border border-[var(--ink)] bg-[var(--paper)] rounded-none overflow-hidden active:border-[var(--stamp)] hover:border-[var(--stamp)] transition-colors duration-300"
             >
               <div
-                className="relative w-full border-b border-[var(--ink)] group-hover:border-[var(--stamp)] group-active:border-[var(--stamp)] transition-colors duration-300"
+                className="relative w-full overflow-hidden border-b border-[var(--ink)] group-hover:border-[var(--stamp)] group-active:border-[var(--stamp)] transition-colors duration-300"
                 style={{ aspectRatio: '16/9' }}
               >
                 <img
                   src={`${import.meta.env.BASE_URL}${item.image}`}
                   alt={item.title}
-                  className="photo-filter w-full h-full object-cover"
+                  className="photo-filter w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="lazy"
                   width={800}
                   height={450}

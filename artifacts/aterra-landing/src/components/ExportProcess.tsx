@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 
 const steps = [
   {
@@ -124,9 +124,15 @@ export function ExportProcess() {
                     style={{ aspectRatio: '3/2', border: '1px solid var(--ink)' }}
                   >
                     {step.stamp && (
-                      <div className="absolute top-3 left-3 z-10 rubber-stamp bg-[var(--paper)]">
+                      <motion.div
+                        className="absolute top-3 left-3 z-10 rubber-stamp bg-[var(--paper)]"
+                        initial={{ scale: 1.4, rotate: -8, opacity: 0 }}
+                        whileInView={{ scale: 1, rotate: -4, opacity: 0.92 }}
+                        viewport={{ once: true }}
+                        transition={{ type: 'spring', stiffness: 260, damping: 18, delay: 0.3 }}
+                      >
                         SCA SCREEN 15+
-                      </div>
+                      </motion.div>
                     )}
                     <img
                       src={`${import.meta.env.BASE_URL}${step.image}`}
@@ -206,9 +212,15 @@ export function ExportProcess() {
                     }}
                   >
                     {step.stamp && (
-                      <div className="absolute top-3 left-3 z-10 rubber-stamp bg-[var(--paper)]">
+                      <motion.div
+                        className="absolute top-3 left-3 z-10 rubber-stamp bg-[var(--paper)]"
+                        initial={{ scale: 1.4, rotate: -8, opacity: 0 }}
+                        whileInView={{ scale: 1, rotate: -4, opacity: 0.92 }}
+                        viewport={{ once: true }}
+                        transition={{ type: 'spring', stiffness: 260, damping: 18, delay: 0.4 }}
+                      >
                         SCA SCREEN 15+
-                      </div>
+                      </motion.div>
                     )}
                     <img
                       src={`${import.meta.env.BASE_URL}${step.image}`}

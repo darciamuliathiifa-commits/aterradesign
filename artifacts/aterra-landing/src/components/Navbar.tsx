@@ -2,14 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const SECTION_IDS = ['about','services','products','origins','process','certifications','contact'];
+
+
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled]       = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection]  = useState('');
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Track which section is in view for the active link underline
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { threshold: 0.3 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   // Lock body scroll when menu is open
@@ -51,15 +71,26 @@ export function Navbar() {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-xs uppercase tracking-[0.1em] hover:text-[var(--jute)] transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const sectionId = link.href.replace('#', '');
+              const isActive = activeSection === sectionId;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="relative font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-xs uppercase tracking-[0.1em] hover:text-[var(--jute)] transition-colors py-1"
+                >
+                  {link.name}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[var(--stamp)]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           {/* Desktop CTA */}
@@ -116,13 +147,16 @@ export function Navbar() {
               </button>
             </div>
 
-            {/* Manifest index links */}
+            {/* Manifest index links — staggered entry */}
             <nav className="flex flex-col flex-1 overflow-y-auto">
               {navLinks.map((link, i) => (
-                <a
+                <motion.a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.25, delay: i * 0.05, ease: 'easeOut' }}
                   className={`flex items-center gap-5 px-5 active:bg-[var(--jute)]/10 transition-colors ${
                     i !== navLinks.length - 1 ? 'border-b border-dashed border-[var(--jute)]/30' : ''
                   }`}
@@ -134,7 +168,7 @@ export function Navbar() {
                   <span className="font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-base uppercase tracking-[0.08em]">
                     / {link.name.toUpperCase()}
                   </span>
-                </a>
+                </motion.a>
               ))}
             </nav>
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const inputCls =
   'w-full px-4 rounded-none border border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--stamp)] transition-colors font-[\'Archivo\'] text-[var(--ink)] text-base appearance-none';
@@ -267,14 +267,20 @@ Message: ${data.message}`;
                 SEND INQUIRY
               </button>
 
-              {status === 'success' && (
-                <p
-                  ref={successRef}
-                  className="text-[var(--ink)] font-semibold font-['IBM_Plex_Mono'] text-sm tracking-[0.05em] uppercase text-center"
-                >
-                  THANK YOU — OUR EXPORT TEAM WILL REPLY WITHIN 24 HOURS.
-                </p>
-              )}
+              <AnimatePresence>
+                {status === 'success' && (
+                  <motion.p
+                    ref={successRef}
+                    initial={{ opacity: 0, scale: 0.95, y: 6 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                    className="text-[var(--ink)] font-semibold font-['IBM_Plex_Mono'] text-sm tracking-[0.05em] uppercase text-center"
+                  >
+                    ✓ THANK YOU — OUR EXPORT TEAM WILL REPLY WITHIN 24 HOURS.
+                  </motion.p>
+                )}
+              </AnimatePresence>
 
               <a
                 href="https://wa.me/6289510519278"
