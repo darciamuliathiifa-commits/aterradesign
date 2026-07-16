@@ -6,26 +6,41 @@ const steps = [
     num: '01.',
     title: 'LOT SELECTION',
     desc: 'Buyer receives cupping notes and a green sample. Approval triggers procurement from contracted cooperatives at the agreed price.',
+    chip: 'GREEN SAMPLE + CUPPING NOTES',
     image: 'lot-selection.jpg',
     imageAlt: 'Green coffee samples and cupping notes at lot selection',
+    photoRight: true,
+    stamp: false,
   },
   {
     num: '02.',
     title: 'MILLING & GRADING',
     desc: 'Wet-hulled or washed processing at our certified dry mill in Medan. Screen 15+ grading and defect sorting to SCA standards.',
+    chip: 'SCREEN 15+ / SCA STANDARD',
     image: 'milling.jpg',
     imageAlt: 'Coffee milling and grading at the dry mill in Medan',
+    photoRight: false,
     stamp: true,
   },
   {
     num: '03.',
     title: 'DOCUMENTATION',
     desc: 'Phytosanitary certificate, COO, ICO certificate, cupping report, and lot traceability issued per shipment.',
+    chip: '5 DOCS PER SHIPMENT',
+    image: 'commodity-coffee.jpg',
+    imageAlt: 'Export documentation and coffee lot traceability',
+    photoRight: true,
+    stamp: false,
   },
   {
     num: '04.',
     title: 'SHIPMENT',
     desc: 'FCL or LCL from Belawan or Tanjung Priok. GrainPro or jute bagging per buyer specification. Lead time 3–5 weeks.',
+    chip: 'LEAD TIME: 3–5 WEEKS',
+    image: 'commodity-charcoal.jpg',
+    imageAlt: 'Container shipment from Belawan and Tanjung Priok ports',
+    photoRight: false,
+    stamp: false,
   },
 ];
 
@@ -37,8 +52,8 @@ export function ExportProcess() {
       id="process"
       className="py-20 md:py-32 paper-texture border-t border-dashed border-[var(--jute)] relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-5 md:px-12 flex flex-col">
-
+      {/* Section header — unchanged */}
+      <div className="max-w-[1200px] mx-auto px-5 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -64,114 +79,152 @@ export function ExportProcess() {
             </p>
           </div>
         </motion.div>
+      </div>
 
-        {/* Steps */}
-        <div className="flex flex-col relative">
+      {/* Steps */}
+      <div className="max-w-[1200px] mx-auto px-5 md:px-12">
+        {steps.map((step, index) => (
+          <React.Fragment key={step.num}>
+            {/* ONE dashed divider between steps — content-width only, no full bleed */}
+            {index > 0 && (
+              <div
+                className="border-t border-dashed border-[var(--jute)]"
+                aria-hidden="true"
+              />
+            )}
 
-          {/* Mobile vertical dashed timeline line */}
-          <div
-            className="absolute left-[1.75rem] top-0 bottom-0 md:hidden"
-            style={{ width: '1px', borderLeft: '1px dashed var(--jute)', opacity: 0.5 }}
-            aria-hidden="true"
-          />
-
-          {steps.map((step, index) => (
             <motion.div
-              key={step.num}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={
-                shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.12 }
+                shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.1 }
               }
-              className={`flex items-start gap-0 py-8 md:py-10 relative ${
-                index !== steps.length - 1 ? 'border-b border-dashed border-[var(--jute)]' : ''
-              }`}
+              className="py-20 md:py-24"
             >
-              {/* Step number */}
-              <div
-                className="font-['IBM_Plex_Mono'] text-[var(--jute)] font-semibold leading-none shrink-0"
-                style={{
-                  fontSize: 'clamp(1.8rem, 5vw, 4rem)',
-                  width: 'clamp(3rem, 8vw, 9.375rem)',
-                  position: 'relative',
-                  zIndex: 1,
-                  background: 'var(--paper)',
-                  paddingRight: '0.75rem',
-                }}
-              >
-                {step.num}
-              </div>
-
-              {/* Content + optional image */}
-              <div className="flex-1 relative flex flex-col md:flex-row md:items-start md:gap-8">
-
-                {/* Text block */}
-                <div className="flex-1 relative">
-                  {step.stamp && (
-                    <motion.div
-                      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.2 }}
-                      whileInView={shouldReduceMotion ? { opacity: 0.92 } : { opacity: 0.92, scale: 1 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 15, delay: 0.2 }}
-                      className="absolute -top-6 right-0 rubber-stamp z-20"
-                    >
-                      SCA SCREEN 15+
-                    </motion.div>
-                  )}
+              {/* ── MOBILE layout: vertical stacked ── */}
+              <div className="flex flex-col gap-5 lg:hidden">
+                <div className="flex items-baseline gap-4">
+                  <span
+                    className="font-['IBM_Plex_Mono'] text-[var(--jute)] font-semibold leading-none shrink-0"
+                    style={{ fontSize: '2rem' }}
+                  >
+                    {step.num}
+                  </span>
                   <h3
-                    className="font-['Archivo'] font-black uppercase text-[var(--ink)] tracking-[-0.02em] leading-[1.05] mb-2 md:mb-3"
-                    style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)' }}
+                    className="font-['Archivo'] font-black uppercase text-[var(--ink)] tracking-[-0.02em] leading-[1.1]"
+                    style={{ fontSize: 'clamp(1.1rem, 4vw, 1.4rem)' }}
                   >
                     {step.title}
                   </h3>
-                  <p className="font-['Archivo'] text-[var(--ink)] text-base leading-[1.65]">
-                    {step.desc}
-                  </p>
                 </div>
-
-                {/* Supporting photo (steps 1 & 2 only) */}
                 {step.image && (
                   <div
-                    className="mt-5 md:mt-0 md:shrink-0 overflow-hidden"
-                    style={{
-                      border: '1px solid var(--ink)',
-                      borderRadius: 0,
-                      // Desktop: fixed width column. Mobile: full width below text.
-                      width: '100%',
-                      maxWidth: '100%',
-                    }}
+                    className="relative overflow-hidden w-full"
+                    style={{ aspectRatio: '3/2', border: '1px solid var(--ink)' }}
                   >
-                    {/* Responsive sizing: narrower on desktop so it doesn't crowd the text */}
-                    <div className="md:hidden" style={{ aspectRatio: '16/9' }}>
-                      <img
-                        src={`${import.meta.env.BASE_URL}${step.image}`}
-                        alt={step.imageAlt}
-                        className="photo-filter w-full h-full object-cover"
-                        loading="lazy"
-                        width={800}
-                        height={450}
-                      />
-                    </div>
-                    <div
-                      className="hidden md:block"
-                      style={{ width: '280px', height: '180px' }}
-                    >
-                      <img
-                        src={`${import.meta.env.BASE_URL}${step.image}`}
-                        alt={step.imageAlt}
-                        className="photo-filter w-full h-full object-cover"
-                        loading="lazy"
-                        width={560}
-                        height={360}
-                      />
-                    </div>
+                    {step.stamp && (
+                      <div className="absolute top-3 left-3 z-10 rubber-stamp bg-[var(--paper)]">
+                        SCA SCREEN 15+
+                      </div>
+                    )}
+                    <img
+                      src={`${import.meta.env.BASE_URL}${step.image}`}
+                      alt={step.imageAlt}
+                      className="photo-filter w-full h-full object-cover"
+                      loading="lazy"
+                      width={900}
+                      height={600}
+                    />
                   </div>
                 )}
+                <p
+                  className="font-['Archivo'] text-[var(--ink)] leading-[1.6]"
+                  style={{ fontSize: '16px' }}
+                >
+                  {step.desc}
+                </p>
+                <div
+                  className="inline-flex self-start font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase tracking-[0.08em] px-3 py-1.5"
+                  style={{ fontSize: '0.65rem', border: '1px solid var(--ink)' }}
+                >
+                  {step.chip}
+                </div>
+              </div>
+
+              {/* ── DESKTOP layout: 3-column ledger row ── */}
+              <div className="hidden lg:grid lg:grid-cols-[72px_1fr] lg:gap-x-8 lg:items-start">
+
+                {/* Column 1: Step number */}
+                <div
+                  className="font-['IBM_Plex_Mono'] text-[var(--jute)] font-semibold leading-none pt-1 shrink-0"
+                  style={{ fontSize: '1.75rem' }}
+                >
+                  {step.num}
+                </div>
+
+                {/* Column 2: Text + Photo (order swaps per step) */}
+                <div
+                  className={`flex items-start gap-12 ${
+                    step.photoRight ? 'flex-row' : 'flex-row-reverse'
+                  }`}
+                >
+                  {/* Text block */}
+                  <div className="flex flex-col gap-5" style={{ flex: '1 1 0', minWidth: 0 }}>
+                    <h3
+                      className="font-['Archivo'] font-black uppercase text-[var(--ink)] tracking-[-0.02em] leading-[1.1]"
+                      style={{
+                        fontSize: 'clamp(1.2rem, 1.8vw, 1.5rem)',
+                        textWrap: 'balance',
+                      } as React.CSSProperties}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      className="font-['Archivo'] text-[var(--ink)] leading-[1.6]"
+                      style={{ fontSize: '16px', maxWidth: '48ch', minWidth: '34ch' }}
+                    >
+                      {step.desc}
+                    </p>
+                    {/* Data chip */}
+                    <div
+                      className="inline-flex self-start font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase tracking-[0.08em] px-3 py-1.5"
+                      style={{ fontSize: '0.65rem', border: '1px solid var(--ink)' }}
+                    >
+                      {step.chip}
+                    </div>
+                  </div>
+
+                  {/* Photo block — 42% of content width */}
+                  <div
+                    className="relative overflow-hidden shrink-0"
+                    style={{
+                      width: '42%',
+                      aspectRatio: '3/2',
+                      border: '1px solid var(--ink)',
+                      borderRadius: 0,
+                    }}
+                  >
+                    {step.stamp && (
+                      <div className="absolute top-3 left-3 z-10 rubber-stamp bg-[var(--paper)]">
+                        SCA SCREEN 15+
+                      </div>
+                    )}
+                    <img
+                      src={`${import.meta.env.BASE_URL}${step.image}`}
+                      alt={step.imageAlt}
+                      className="photo-filter w-full h-full object-cover"
+                      loading="lazy"
+                      width={900}
+                      height={600}
+                    />
+                  </div>
+                </div>
+
               </div>
             </motion.div>
-          ))}
-        </div>
-
+          </React.Fragment>
+        ))}
       </div>
     </section>
   );

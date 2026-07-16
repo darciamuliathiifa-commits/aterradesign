@@ -11,6 +11,27 @@ env = { "CI" = "true" }
 [workflows]
 runButton = "Project"
 
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "artifacts/aterra-landing: web"
+
+[[workflows.workflow]]
+name = "artifacts/aterra-landing: web"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=18602 BASE_PATH=/ pnpm --filter @workspace/aterra-landing run dev"
+waitForPort = 18602
+
 [agent]
 stack = "PNPM_WORKSPACE"
 expertMode = true
