@@ -40,11 +40,13 @@ export function Navbar() {
         style={{ paddingTop: `max(env(safe-area-inset-top), ${isScrolled ? '1rem' : '1.5rem'})` }}
       >
         <div className="max-w-7xl mx-auto px-5 md:px-12 flex justify-between items-center">
-          <a
-            href="#"
-            className="font-['Archivo'] text-[var(--offwhite)] text-2xl md:text-3xl font-black uppercase tracking-[-0.02em]"
-          >
-            ATERRA
+          <a href="#" className="flex items-center shrink-0">
+            <img
+              src={`${import.meta.env.BASE_URL}logo-light.png`}
+              alt="ATERRA — PT Ananda Terra Nusantara"
+              className="h-[30px] md:h-[36px] w-auto object-contain"
+              style={{ imageRendering: 'auto' }}
+            />
           </a>
 
           {/* Desktop nav links */}
@@ -100,9 +102,11 @@ export function Navbar() {
           >
             {/* Header row */}
             <div className="flex justify-between items-center px-5 py-4 border-b border-dashed border-[var(--jute)]/50 shrink-0">
-              <span className="font-['Archivo'] font-black text-[var(--offwhite)] text-xl uppercase tracking-[-0.02em]">
-                ATERRA
-              </span>
+              <img
+                src={`${import.meta.env.BASE_URL}logo-light.png`}
+                alt="ATERRA — PT Ananda Terra Nusantara"
+                className="h-[30px] w-auto object-contain"
+              />
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center w-11 h-11 text-[var(--offwhite)] active:text-[var(--jute)] transition-colors"

@@ -67,8 +67,12 @@ export function Footer() {
 
         {/* Bottom strip */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-5">
-          <div className="font-['Archivo'] font-black text-[var(--offwhite)] text-xl tracking-[-0.02em] uppercase">
-            ATERRA
+          <div>
+            <img
+              src={`${import.meta.env.BASE_URL}logo-light.png`}
+              alt="ATERRA — PT Ananda Terra Nusantara"
+              className="h-[30px] w-auto object-contain"
+            />
           </div>
 
           <div className="flex flex-wrap gap-5 md:gap-6">
