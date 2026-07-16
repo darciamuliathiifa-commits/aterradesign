@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const commodities = [
   {
     title: 'Coffee',
-    image: 'commodity-coffee.jpg',
+    image: 'coffee.jpg',
     description: 'Arabica and Robusta beans from Sumatra, Java, Toraja, and other renowned growing regions.',
   },
   {

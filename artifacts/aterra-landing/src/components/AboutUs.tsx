@@ -69,7 +69,7 @@ export function AboutUs() {
           style={{ height: 'clamp(280px, 50vw, 600px)', aspectRatio: '4/3' }}
         >
           <img
-            src={`${import.meta.env.BASE_URL}about-image.jpg`}
+            src={`${import.meta.env.BASE_URL}about.jpg`}
             alt="Indonesian coffee farmers handpicking ripe red coffee cherries"
             className="photo-filter object-cover w-full h-full"
             loading="lazy"

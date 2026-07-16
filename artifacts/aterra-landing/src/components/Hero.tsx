@@ -24,13 +24,13 @@ export function Hero() {
       {/* Desktop background image */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat md:block hidden"
-        style={{ backgroundImage: `url('${import.meta.env.BASE_URL}hero-bg.jpg')` }}
+        style={{ backgroundImage: `url('${import.meta.env.BASE_URL}hero-poster.jpg')` }}
       />
 
-      {/* Mobile background image (shown when video hasn't loaded) */}
+      {/* Mobile background image / poster (shown before video loads or if video fails) */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat md:hidden"
-        style={{ backgroundImage: `url('${import.meta.env.BASE_URL}hero-bg.jpg')` }}
+        style={{ backgroundImage: `url('${import.meta.env.BASE_URL}hero-poster.jpg')` }}
       />
 
       {/* Mobile video — hidden on desktop, loads only when src is set by JS */}
@@ -41,7 +41,7 @@ export function Hero() {
         muted
         loop
         playsInline
-        poster={`${import.meta.env.BASE_URL}hero-bg.jpg`}
+        poster={`${import.meta.env.BASE_URL}hero-poster.jpg`}
         width={390}
         height={844}
         onError={(e) => {
