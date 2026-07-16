@@ -27,14 +27,14 @@ export function Navbar() {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
         isScrolled
-          ? 'bg-[#1B3A2D] shadow-lg py-4'
+          ? 'bg-[var(--ink)] shadow-none py-4'
           : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         <a
           href="#"
-          className="font-serif text-[#FAF8F3] text-2xl md:text-3xl font-bold tracking-wider"
+          className="font-['Archivo'] text-[var(--offwhite)] text-2xl md:text-3xl font-black uppercase tracking-[-0.02em]"
           data-testid="link-logo"
         >
           ATERRA
@@ -46,7 +46,7 @@ export function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-[#FAF8F3] text-sm font-medium hover:text-[#B4713D] transition-colors"
+              className="font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-xs uppercase tracking-[0.1em] hover:text-[var(--jute)] transition-colors"
             >
               {link.name}
             </a>
@@ -57,7 +57,7 @@ export function Navbar() {
         <div className="hidden md:block">
           <a
             href="#inquiry"
-            className="bg-[#B4713D] text-[#FAF8F3] px-6 py-2.5 rounded hover:bg-[#9a5e30] transition-colors font-medium text-sm font-sans"
+            className="bg-[var(--stamp)] text-[var(--offwhite)] px-6 py-2.5 rounded-none hover:opacity-90 transition-opacity font-['Archivo'] font-black uppercase text-sm"
             data-testid="link-inquiry-cta"
           >
             Request a Quote
@@ -66,7 +66,7 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-[#FAF8F3]"
+          className="md:hidden text-[var(--offwhite)]"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           data-testid="button-mobile-menu"
         >
@@ -81,7 +81,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#1B3A2D] border-t border-[#1B3A2D]/20 mt-4 overflow-hidden"
+            className="md:hidden bg-[var(--ink)] border-t border-[var(--jute)] border-dashed mt-4 overflow-hidden"
           >
             <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -89,7 +89,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-[#FAF8F3] text-lg font-medium hover:text-[#B4713D] transition-colors py-2"
+                  className="font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-sm uppercase tracking-[0.1em] hover:text-[var(--jute)] transition-colors py-2"
                 >
                   {link.name}
                 </a>
@@ -97,7 +97,7 @@ export function Navbar() {
               <a
                 href="#inquiry"
                 onClick={() => setMobileMenuOpen(false)}
-                className="bg-[#B4713D] text-[#FAF8F3] px-6 py-3 rounded text-center font-medium mt-4 hover:bg-[#9a5e30] transition-colors"
+                className="bg-[var(--stamp)] text-[var(--offwhite)] px-6 py-3 rounded-none text-center font-['Archivo'] font-black uppercase text-sm mt-4 hover:opacity-90 transition-opacity"
               >
                 Request a Quote
               </a>

@@ -38,22 +38,28 @@ Message: ${data.message}`;
   };
 
   return (
-    <section id="inquiry" className="py-24 md:py-32 bg-[#F5EFE4]">
-      <div className="max-w-4xl mx-auto px-6 md:px-12">
+    <section id="inquiry" className="py-24 md:py-32 paper-texture border-t border-dashed border-[var(--jute)]">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 flex flex-col">
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16 flex flex-col gap-6"
         >
-          <h2 className="font-serif text-[#4A2C1A] text-4xl md:text-5xl font-bold mb-4">
-            Export Inquiry
-          </h2>
-          <p className="font-sans text-[#22201C]/70 text-lg">
-            Tell us what you need — our export team replies within 24 hours.
-          </p>
+          <div className="flex items-center gap-4">
+            <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] uppercase tracking-[0.1em] text-sm font-semibold">DOC 07 / EXPORT INQUIRY</span>
+            <div className="flex-1 h-[1px] bg-[var(--jute)]"></div>
+          </div>
+          <div>
+            <h2 className="font-['Archivo'] font-black uppercase text-[var(--ink)] text-4xl md:text-5xl tracking-[-0.02em] leading-[1.05] mb-2">
+              EXPORT INQUIRY
+            </h2>
+            <p className="font-['IBM_Plex_Mono'] text-[var(--ink)]/70 text-sm uppercase tracking-[0.05em]">
+              Tell us what you need — our export team replies within 24 hours.
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
@@ -61,129 +67,129 @@ Message: ${data.message}`;
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white p-8 md:p-12 rounded-xl shadow-2xl shadow-[#4A2C1A]/10 border border-[#4A2C1A]/5"
+          className="bg-[var(--paper)] p-8 md:p-12 rounded-none border border-[var(--ink)]"
         >
-          <form onSubmit={submitInquiry} className="flex flex-col gap-6">
+          <form onSubmit={submitInquiry} className="flex flex-col gap-8">
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="fullName" className="font-sans text-sm font-semibold text-[#22201C]">
-                  Full Name <span className="text-red-500">*</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="flex flex-col gap-3">
+                <label htmlFor="fullName" className="font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-[0.1em] text-[var(--ink)]">
+                  FULL NAME *
                 </label>
                 <input 
                   type="text" 
                   id="fullName" 
                   name="fullName" 
                   required
-                  className="px-4 py-3 rounded-md border border-[#4A2C1A]/20 bg-[#F5EFE4]/50 focus:outline-none focus:ring-2 focus:ring-[#B4713D]/50 focus:border-[#B4713D] transition-all font-sans"
+                  className="px-4 py-3 rounded-none border border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--stamp)] transition-colors font-['Archivo'] text-[var(--ink)]"
                 />
               </div>
               
-              <div className="flex flex-col gap-2">
-                <label htmlFor="companyName" className="font-sans text-sm font-semibold text-[#22201C]">
-                  Company Name
+              <div className="flex flex-col gap-3">
+                <label htmlFor="companyName" className="font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-[0.1em] text-[var(--ink)]">
+                  COMPANY NAME
                 </label>
                 <input 
                   type="text" 
                   id="companyName" 
                   name="companyName" 
-                  className="px-4 py-3 rounded-md border border-[#4A2C1A]/20 bg-[#F5EFE4]/50 focus:outline-none focus:ring-2 focus:ring-[#B4713D]/50 focus:border-[#B4713D] transition-all font-sans"
+                  className="px-4 py-3 rounded-none border border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--stamp)] transition-colors font-['Archivo'] text-[var(--ink)]"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="font-sans text-sm font-semibold text-[#22201C]">
-                  Email Address <span className="text-red-500">*</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="flex flex-col gap-3">
+                <label htmlFor="email" className="font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-[0.1em] text-[var(--ink)]">
+                  EMAIL ADDRESS *
                 </label>
                 <input 
                   type="email" 
                   id="email" 
                   name="email" 
                   required
-                  className="px-4 py-3 rounded-md border border-[#4A2C1A]/20 bg-[#F5EFE4]/50 focus:outline-none focus:ring-2 focus:ring-[#B4713D]/50 focus:border-[#B4713D] transition-all font-sans"
+                  className="px-4 py-3 rounded-none border border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--stamp)] transition-colors font-['Archivo'] text-[var(--ink)]"
                 />
               </div>
               
-              <div className="flex flex-col gap-2">
-                <label htmlFor="country" className="font-sans text-sm font-semibold text-[#22201C]">
-                  Country
+              <div className="flex flex-col gap-3">
+                <label htmlFor="country" className="font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-[0.1em] text-[var(--ink)]">
+                  COUNTRY
                 </label>
                 <input 
                   type="text" 
                   id="country" 
                   name="country" 
-                  className="px-4 py-3 rounded-md border border-[#4A2C1A]/20 bg-[#F5EFE4]/50 focus:outline-none focus:ring-2 focus:ring-[#B4713D]/50 focus:border-[#B4713D] transition-all font-sans"
+                  className="px-4 py-3 rounded-none border border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--stamp)] transition-colors font-['Archivo'] text-[var(--ink)]"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="originOfInterest" className="font-sans text-sm font-semibold text-[#22201C]">
-                  Origin of Interest
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="flex flex-col gap-3">
+                <label htmlFor="originOfInterest" className="font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-[0.1em] text-[var(--ink)]">
+                  ORIGIN OF INTEREST
                 </label>
                 <select 
                   id="originOfInterest" 
                   name="originOfInterest"
-                  className="px-4 py-3 rounded-md border border-[#4A2C1A]/20 bg-[#F5EFE4]/50 focus:outline-none focus:ring-2 focus:ring-[#B4713D]/50 focus:border-[#B4713D] transition-all font-sans appearance-none"
+                  className="px-4 py-3 rounded-none border border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--stamp)] transition-colors font-['Archivo'] text-[var(--ink)] appearance-none"
                 >
-                  <option value="">Select a commodity or origin...</option>
-                  <optgroup label="Coffee Origins">
-                    <option value="Kintamani Bali">Kintamani Bali</option>
-                    <option value="Jember">Jember</option>
-                    <option value="Ijen">Ijen</option>
-                    <option value="Java Preanger">Java Preanger</option>
-                    <option value="Lampung">Lampung</option>
-                    <option value="Kerinci">Kerinci</option>
-                    <option value="Palembang">Palembang</option>
+                  <option value="">SELECT A COMMODITY...</option>
+                  <optgroup label="COFFEE ORIGINS">
+                    <option value="Kintamani Bali">KINTAMANI BALI</option>
+                    <option value="Jember">JEMBER</option>
+                    <option value="Ijen">IJEN</option>
+                    <option value="Java Preanger">JAVA PREANGER</option>
+                    <option value="Lampung">LAMPUNG</option>
+                    <option value="Kerinci">KERINCI</option>
+                    <option value="Palembang">PALEMBANG</option>
                   </optgroup>
-                  <optgroup label="Spices & Fuel">
-                    <option value="Cinnamon (Cassia Vera)">Cinnamon (Cassia Vera)</option>
-                    <option value="Nutmeg">Nutmeg</option>
-                    <option value="Charcoal Briquettes">Charcoal Briquettes</option>
+                  <optgroup label="SPICES & FUEL">
+                    <option value="Cinnamon (Cassia Vera)">CINNAMON (CASSIA VERA)</option>
+                    <option value="Nutmeg">NUTMEG</option>
+                    <option value="Charcoal Briquettes">CHARCOAL BRIQUETTES</option>
                   </optgroup>
                 </select>
               </div>
               
-              <div className="flex flex-col gap-2">
-                <label htmlFor="estimatedAnnualVolume" className="font-sans text-sm font-semibold text-[#22201C]">
-                  Estimated Annual Volume
+              <div className="flex flex-col gap-3">
+                <label htmlFor="estimatedAnnualVolume" className="font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-[0.1em] text-[var(--ink)]">
+                  ESTIMATED ANNUAL VOLUME
                 </label>
                 <input 
                   type="text" 
                   id="estimatedAnnualVolume" 
                   name="estimatedAnnualVolume" 
                   placeholder="e.g. 20 MT/year"
-                  className="px-4 py-3 rounded-md border border-[#4A2C1A]/20 bg-[#F5EFE4]/50 focus:outline-none focus:ring-2 focus:ring-[#B4713D]/50 focus:border-[#B4713D] transition-all font-sans placeholder:text-[#22201C]/30"
+                  className="px-4 py-3 rounded-none border border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--stamp)] transition-colors font-['Archivo'] text-[var(--ink)] placeholder:text-[var(--ink)]/30 placeholder:font-['IBM_Plex_Mono']"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="font-sans text-sm font-semibold text-[#22201C]">
-                Message
+            <div className="flex flex-col gap-3">
+              <label htmlFor="message" className="font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-[0.1em] text-[var(--ink)]">
+                MESSAGE
               </label>
               <textarea 
                 id="message" 
                 name="message" 
                 rows={4}
-                className="px-4 py-3 rounded-md border border-[#4A2C1A]/20 bg-[#F5EFE4]/50 focus:outline-none focus:ring-2 focus:ring-[#B4713D]/50 focus:border-[#B4713D] transition-all font-sans resize-y"
+                className="px-4 py-3 rounded-none border border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--stamp)] transition-colors font-['Archivo'] text-[var(--ink)] resize-y"
               ></textarea>
             </div>
 
             <div className="mt-4 flex flex-col items-center gap-4">
               <button 
                 type="submit"
-                className="w-full md:w-auto px-10 py-4 bg-[#B4713D] text-[#FAF8F3] font-bold rounded-md hover:bg-[#9a5e30] transition-colors font-sans text-lg"
+                className="w-full md:w-auto px-12 py-4 bg-[var(--stamp)] text-[var(--offwhite)] font-['Archivo'] font-black uppercase tracking-wide rounded-none hover:opacity-90 transition-opacity text-base"
               >
-                Send Inquiry
+                SEND INQUIRY
               </button>
               
               {status === 'success' && (
-                <p className="text-[#1B3A2D] font-medium font-sans animate-in fade-in zoom-in duration-300">
-                  Thank you — our export team will reply within 24 hours.
+                <p className="text-[var(--ink)] font-semibold font-['IBM_Plex_Mono'] text-sm tracking-[0.05em] uppercase mt-2">
+                  THANK YOU — OUR EXPORT TEAM WILL REPLY WITHIN 24 HOURS.
                 </p>
               )}
               
@@ -191,9 +197,9 @@ Message: ${data.message}`;
                 href="https://wa.me/6289510519278" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm font-sans text-[#4A2C1A]/60 hover:text-[#B4713D] transition-colors mt-2"
+                className="text-xs font-['IBM_Plex_Mono'] uppercase tracking-[0.05em] text-[var(--jute)] hover:text-[var(--stamp)] transition-colors mt-2"
               >
-                Or chat directly on WhatsApp
+                OR CHAT DIRECTLY ON WHATSAPP
               </a>
             </div>
 

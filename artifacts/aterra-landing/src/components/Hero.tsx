@@ -1,7 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -22,11 +24,31 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 text-center flex flex-col items-center">
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative mb-6"
+        >
+          <span className="font-['Allerta_Stencil'] text-[var(--offwhite)]/80 text-sm md:text-base tracking-[0.15em] uppercase">
+            PT ANANDA TERRA NUSANTARA — PRODUCT OF INDONESIA
+          </span>
+          <motion.div 
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.2 }}
+            whileInView={shouldReduceMotion ? { opacity: 0.92 } : { opacity: 0.92, scale: 1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.5 }}
+            className="absolute -top-8 -right-8 md:-right-16 rubber-stamp"
+          >
+            PRODUCT OF INDONESIA
+          </motion.div>
+        </motion.div>
+
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-serif text-[#FAF8F3] text-[clamp(2.5rem,5vw+1rem,5rem)] leading-tight max-w-[800px]"
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+          className="font-['Archivo'] font-black uppercase text-[var(--offwhite)] text-[clamp(2.8rem,5vw+1rem,5.5rem)] tracking-[-0.02em] leading-[1.05] max-w-[900px]"
         >
           From Indonesian Soil to the World
         </motion.h1>
@@ -35,7 +57,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="mt-6 text-[#FAF8F3]/80 font-sans text-lg md:text-xl max-w-[540px] leading-relaxed"
+          className="mt-8 text-[var(--offwhite)]/70 font-['IBM_Plex_Mono'] text-sm md:text-base uppercase tracking-[0.05em] max-w-[540px] leading-relaxed"
         >
           Premium coffee, cinnamon, nutmeg & charcoal briquettes — sourced directly from smallholder farmers, delivered to global markets.
         </motion.p>
@@ -48,14 +70,14 @@ export function Hero() {
         >
           <a 
             href="#products" 
-            className="bg-[#B4713D] text-[#FAF8F3] px-8 py-3.5 rounded font-medium hover:bg-[#9a5e30] transition-colors min-w-[220px]"
+            className="bg-[var(--stamp)] text-[var(--offwhite)] px-8 py-4 rounded-none font-['Archivo'] font-black uppercase text-sm tracking-wide hover:opacity-90 transition-opacity min-w-[220px]"
             data-testid="hero-btn-products"
           >
             Explore Our Commodities
           </a>
           <a 
             href="#inquiry" 
-            className="border-2 border-[#FAF8F3] text-[#FAF8F3] px-8 py-3.5 rounded font-medium hover:bg-[#FAF8F3] hover:text-[#1B3A2D] transition-colors min-w-[220px]"
+            className="border border-[var(--offwhite)] text-[var(--offwhite)] px-8 py-4 rounded-none font-['Archivo'] font-black uppercase text-sm tracking-wide bg-transparent hover:bg-[var(--offwhite)] hover:text-[var(--ink)] transition-colors min-w-[220px]"
             data-testid="hero-btn-inquiry"
           >
             Export Inquiry
@@ -63,15 +85,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
-      >
-        <div className="w-[1px] h-12 bg-gradient-to-b from-[#FAF8F3]/0 via-[#FAF8F3]/50 to-[#FAF8F3] animate-pulse" />
-      </motion.div>
     </section>
   );
 }

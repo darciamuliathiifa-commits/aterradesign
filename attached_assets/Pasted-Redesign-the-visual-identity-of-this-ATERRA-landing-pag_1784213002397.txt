@@ -1,0 +1,33 @@
+Redesign the visual identity of this ATERRA landing page. Keep every section, all copy, the hero video mechanics, and the form logic exactly as they are — this is a full visual redesign, not a content change.
+
+NEW ART DIRECTION — "EXPORT MANIFEST": The site should feel like a beautifully typeset export document / cargo manifest / coffee lot spec sheet, not a generic marketing template. Our buyers are B2B importers who live inside cupping sheets, certificates of origin, and bills of lading — the design must speak their language: precise, data-forward, stamped, tactile paper.
+
+TYPOGRAPHY (Google Fonts)
+- Headings: "Archivo" in Black/Expanded weights, uppercase, tight leading — industrial shipping-crate energy.
+- Data, labels, eyebrows, taste tags, form labels: "IBM Plex Mono", uppercase with wide letter-spacing. Every number and spec (altitude, screen size, lead time, port codes, phone) is ALWAYS set in the mono font.
+- Body text: "Archivo" regular, comfortable line height.
+- One stencil accent ONLY: the small hero eyebrow line uses "Allerta Stencil", like a marking sprayed on a jute sack. Never use the stencil font anywhere else.
+
+PALETTE (remove the previous green/copper palette entirely)
+- Paper #F2ECDD — light section backgrounds, with a very subtle paper-grain texture
+- Ink #1A1815 — dark sections and primary text
+- Jute #C2A878 — muted accents, secondary surfaces
+- Stamp Red #B3372B — rubber-stamp badges, primary CTA, key highlights. Use sparingly: it must feel like a customs stamp hitting paper, not a theme color
+- Off-white #FAF7EF — text on ink sections
+
+SIGNATURE ELEMENTS
+1. Rubber-stamp badges: "PRODUCT OF INDONESIA" in the hero, "GI CERTIFIED — 2008" on the Kintamani card, "SCA SCREEN 15+" in the process section. Style like real rubber stamps: stamp-red, uppercase, 2px border, slightly rounded corners, rotated -3 to -6 degrees, slightly faded/rough texture. These stamps are the memorable motif of the site — but show at most ONE stamp per viewport.
+2. Origin Coffees become LOT CARDS: each card is a spec sheet — top row "LOT 01 — KINTAMANI BALI" in mono, hairline divider, then a mini data table (REGION / ALTITUDE / PROCESS / VARIETY) in mono with dotted leader lines, then the 2-line description, then taste notes as small 1px-bordered mono chips. Cards on paper background with a 1px ink border. No drop shadows, no rounded marketing-card style.
+3. Section headers styled like document fields: a mono eyebrow such as "DOC 03 / ORIGIN COFFEES" with a thin rule running to the screen edge, then the big Archivo heading, left-aligned.
+4. Section dividers: fine dashed lines, like perforated forms.
+5. Footer in mono includes real port codes: "PORT OF LOADING: TANJUNG PRIOK (IDTPP) · BELAWAN (IDBLW)".
+
+HERO (keep the video + dark gradient overlay exactly as built)
+On top of the overlay: the stencil eyebrow "PT ANANDA TERRA NUSANTARA — PRODUCT OF INDONESIA", then the H1 in huge uppercase Archivo Black, subheadline in mono, buttons restyled: primary = solid stamp-red, secondary = 1px off-white outline. Squared corners.
+
+LAYOUT & DETAILS
+- Squared corners everywhere (max 2px radius). No glassmorphism, no gradients except the hero overlay, no drop shadows — depth comes from borders, paper texture, and ink/paper contrast.
+- Break the centered-everything rhythm: section headers left-aligned, the Export Process reads like a numbered manifest list.
+- Apply one consistent warm, slightly desaturated CSS filter to ALL photos so mixed images read as a single photo set.
+- Motion: one orchestrated moment only — stamp badges "press in" (scale 1.15 → 1 with a quick settle) when scrolled into view. Everything else is a plain subtle fade. Respect prefers-reduced-motion.
+- Stay fully responsive down to 375px, and keep the project a standard Vite build for Vercel.

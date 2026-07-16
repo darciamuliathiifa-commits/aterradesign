@@ -10,50 +10,50 @@ export function Footer() {
   ];
 
   return (
-    <footer id="contact" className="bg-[#1B3A2D] pt-20 pb-8 border-t border-[#B4713D]/20">
+    <footer id="contact" className="bg-[var(--ink)] pt-20 pb-8 border-t border-dashed border-[var(--jute)]">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-16">
         
         {/* Top Contact Info */}
         <div className="flex flex-col items-center text-center gap-6">
-          <h3 className="font-serif text-[#FAF8F3] text-3xl md:text-4xl font-bold mb-2">
-            Get In Touch
+          <h3 className="font-['Archivo'] font-black uppercase text-[var(--offwhite)] text-3xl md:text-4xl tracking-[-0.02em] mb-2">
+            GET IN TOUCH
           </h3>
           
-          <div className="flex flex-col gap-3 font-sans text-[#FAF8F3]/80 text-lg">
-            <p>Export Office: Bandung, Indonesia</p>
+          <div className="flex flex-col gap-4 font-['IBM_Plex_Mono'] text-[var(--offwhite)]/80 text-sm md:text-base uppercase tracking-[0.05em]">
+            <p>EXPORT OFFICE: BANDUNG, INDONESIA</p>
             <p>
-              Email:{' '}
+              EMAIL:{' '}
               <a 
                 href="mailto:anandaterranusantara@gmail.com" 
-                className="hover:text-[#B4713D] transition-colors font-medium text-[#FAF8F3]"
+                className="hover:text-[var(--jute)] transition-colors text-[var(--offwhite)]"
               >
-                anandaterranusantara@gmail.com
+                ANANDATERRANUSANTARA@GMAIL.COM
               </a>
             </p>
             <p>
-              WhatsApp:{' '}
+              WHATSAPP:{' '}
               <a 
                 href="https://wa.me/6289510519278" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#B4713D] transition-colors font-medium text-[#FAF8F3]"
+                className="hover:text-[var(--jute)] transition-colors text-[var(--offwhite)]"
               >
                 +62 895-1051-9278
               </a>
             </p>
-            <p className="mt-4 pt-4 border-t border-[#FAF8F3]/10 text-sm max-w-sm mx-auto">
-              Ports of Loading: Tanjung Priok (Jakarta) & Belawan (Medan)
+            <p className="mt-4 pt-4 border-t border-dashed border-[var(--jute)] text-xs md:text-sm max-w-lg mx-auto">
+              PORT OF LOADING: TANJUNG PRIOK (IDTPP) · BELAWAN (IDBLW)
             </p>
           </div>
         </div>
 
         {/* Horizontal Rule */}
-        <hr className="border-[#FAF8F3]/10" />
+        <hr className="border-t border-dashed border-[var(--jute)] opacity-50" />
 
         {/* Bottom Strip */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           
-          <div className="font-serif text-[#FAF8F3] text-xl font-bold tracking-wider">
+          <div className="font-['Archivo'] font-black text-[var(--offwhite)] text-xl tracking-[-0.02em] uppercase">
             ATERRA
           </div>
           
@@ -62,15 +62,15 @@ export function Footer() {
               <a 
                 key={link.name} 
                 href={link.href}
-                className="font-sans text-[#FAF8F3]/60 text-sm hover:text-[#FAF8F3] transition-colors"
+                className="font-['IBM_Plex_Mono'] text-[var(--offwhite)]/60 text-xs uppercase tracking-[0.1em] hover:text-[var(--offwhite)] transition-colors"
               >
                 {link.name}
               </a>
             ))}
           </div>
           
-          <div className="font-sans text-[#FAF8F3]/50 text-xs">
-            © 2026 PT Ananda Terra Nusantara. All rights reserved.
+          <div className="font-['IBM_Plex_Mono'] text-[var(--offwhite)]/40 text-xs uppercase tracking-[0.1em]">
+            © 2026 PT ANANDA TERRA NUSANTARA. ALL RIGHTS RESERVED.
           </div>
           
         </div>

@@ -22,17 +22,24 @@ const services = [
 
 export function OurServices() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-[#1B3A2D]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center">
-        <motion.h2 
+    <section id="services" className="py-24 md:py-32 bg-[var(--ink)] border-t border-dashed border-[var(--jute)]">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col">
+        
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="font-serif text-[#FAF8F3] text-4xl md:text-5xl font-bold mb-16 text-center"
+          className="mb-16 flex flex-col gap-6"
         >
-          Our Services
-        </motion.h2>
+          <div className="flex items-center gap-4">
+            <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] uppercase tracking-[0.1em] text-sm font-semibold">DOC 02 / OUR SERVICES</span>
+            <div className="flex-1 h-[1px] bg-[var(--jute)]"></div>
+          </div>
+          <h2 className="font-['Archivo'] font-black uppercase text-[var(--offwhite)] text-4xl md:text-5xl tracking-[-0.02em] leading-[1.05]">
+            OUR SERVICES
+          </h2>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
           {services.map((service, index) => {
@@ -44,15 +51,13 @@ export function OurServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="bg-[#244537] p-8 md:p-10 rounded-xl border border-transparent hover:border-[#B4713D] transition-colors duration-300 group flex flex-col items-center text-center"
+                className="bg-[var(--paper)] p-8 md:p-10 border border-[var(--ink)] rounded-none hover:border-[var(--stamp)] transition-colors duration-300 group flex flex-col items-start"
               >
-                <div className="w-16 h-16 rounded-full bg-[#1B3A2D] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="text-[#B4713D]" size={32} strokeWidth={1.5} />
-                </div>
-                <h3 className="font-serif text-[#FAF8F3] text-2xl font-bold mb-4">
+                <Icon className="text-[var(--jute)] mb-8" size={32} strokeWidth={1.5} />
+                <h3 className="font-['Archivo'] font-black uppercase text-[var(--ink)] text-2xl tracking-[-0.02em] leading-[1.05] mb-4">
                   {service.title}
                 </h3>
-                <p className="font-sans text-[#FAF8F3]/70 leading-relaxed">
+                <p className="font-['Archivo'] text-[var(--ink)] leading-[1.65]">
                   {service.description}
                 </p>
               </motion.div>
