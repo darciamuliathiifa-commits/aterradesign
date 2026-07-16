@@ -27,7 +27,7 @@ export function OurServices() {
   return (
     <section
       id="services"
-      className="py-20 md:py-32 bg-[var(--ink)] border-t border-dashed border-[var(--jute)]"
+      className="py-20 md:py-32 paper-texture border-t border-dashed border-[var(--jute)]"
     >
       <div className="max-w-7xl mx-auto px-5 md:px-12 flex flex-col">
 
@@ -45,7 +45,7 @@ export function OurServices() {
             <div className="flex-1" style={{ height: '1px', background: 'var(--jute)' }} />
           </div>
           <h2
-            className="font-['Archivo'] font-black uppercase text-[var(--offwhite)] tracking-[-0.02em] leading-[1.05]"
+            className="font-['Archivo'] font-black uppercase text-[var(--ink)] tracking-[-0.02em] leading-[1.05]"
             style={{ fontSize: 'clamp(2rem, 4vw + 0.5rem, 3rem)' }}
           >
             OUR SERVICES

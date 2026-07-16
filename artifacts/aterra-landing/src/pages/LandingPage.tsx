@@ -13,6 +13,21 @@ import { StickyBottomBar } from '@/components/StickyBottomBar';
 export default function LandingPage() {
   return (
     <div className="w-full relative min-h-[100dvh] flex flex-col">
+
+      {/* Subtle logo watermark — sits behind all content */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center overflow-hidden"
+      >
+        <img
+          src="/logo-dark.png"
+          alt=""
+          className="w-[520px] max-w-[70vw] select-none"
+          style={{ opacity: 0.04 }}
+          draggable={false}
+        />
+      </div>
+
       <Navbar />
       <Hero />
       <AboutUs />

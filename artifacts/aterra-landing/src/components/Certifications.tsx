@@ -47,10 +47,10 @@ function CertList({ certs }: { certs: typeof coffeeCerts }) {
         >
           <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] text-lg leading-none mt-1 shrink-0">✓</span>
           <div>
-            <h4 className="font-['Archivo'] font-black uppercase text-[var(--offwhite)] text-lg tracking-[-0.02em] mb-1">
+            <h4 className="font-['Archivo'] font-black uppercase text-[var(--ink)] text-lg tracking-[-0.02em] mb-1">
               {cert.name}
             </h4>
-            <p className="font-['Archivo'] text-[var(--offwhite)]/70 leading-[1.65] text-sm md:text-base">
+            <p className="font-['Archivo'] text-[var(--ink)]/70 leading-[1.65] text-sm md:text-base">
               {cert.desc}
             </p>
           </div>
@@ -66,7 +66,7 @@ export function Certifications() {
   return (
     <section
       id="certifications"
-      className="py-20 md:py-32 bg-[var(--ink)] border-t border-dashed border-[var(--jute)]"
+      className="py-20 md:py-32 paper-texture border-t border-dashed border-[var(--jute)]"
     >
       <div className="max-w-7xl mx-auto px-5 md:px-12 flex flex-col">
 
@@ -85,12 +85,12 @@ export function Certifications() {
           </div>
           <div>
             <h2
-              className="font-['Archivo'] font-black uppercase text-[var(--offwhite)] tracking-[-0.02em] leading-[1.05] mb-2"
+              className="font-['Archivo'] font-black uppercase text-[var(--ink)] tracking-[-0.02em] leading-[1.05] mb-2"
               style={{ fontSize: 'clamp(2rem, 4vw + 0.5rem, 3rem)' }}
             >
               CERTIFICATIONS
             </h2>
-            <p className="font-['IBM_Plex_Mono'] text-[var(--offwhite)]/60 text-sm uppercase tracking-[0.05em]">
+            <p className="font-['IBM_Plex_Mono'] text-[var(--ink)]/60 text-sm uppercase tracking-[0.05em]">
               COMPLIANCE AND TRUST FOR EVERY SHIPMENT.
             </p>
           </div>
@@ -100,7 +100,7 @@ export function Certifications() {
         <div className="md:hidden mb-8">
           <div
             className="flex w-full"
-            style={{ border: '1px solid var(--ink)', height: '48px' }}
+            style={{ border: '1px solid var(--jute)', height: '48px' }}
             role="tablist"
           >
             {(
@@ -116,8 +116,8 @@ export function Certifications() {
                 onClick={() => setActiveTab(tab.key)}
                 className="flex-1 flex items-center justify-center font-['IBM_Plex_Mono'] text-xs uppercase tracking-[0.08em] transition-colors rounded-none"
                 style={{
-                  background: activeTab === tab.key ? 'var(--ink)' : 'transparent',
-                  color: activeTab === tab.key ? 'var(--offwhite)' : 'var(--jute)',
+                  background: activeTab === tab.key ? 'var(--jute)' : 'transparent',
+                  color: activeTab === tab.key ? 'var(--paper)' : 'var(--jute)',
                   border: 'none',
                   borderRight: tab.key === 'coffee' ? '1px solid var(--jute)' : 'none',
                   minHeight: '48px',
