@@ -10,8 +10,20 @@ export function Footer() {
   ];
 
   return (
-    <footer id="contact" className="bg-[var(--ink)] pt-16 md:pt-20 pb-24 md:pb-8 border-t border-dashed border-[var(--jute)]">
-      <div className="max-w-7xl mx-auto px-5 md:px-12 flex flex-col gap-12 md:gap-16">
+    <footer id="contact" className="relative overflow-hidden bg-[var(--ink)] pt-16 md:pt-20 pb-24 md:pb-8 border-t border-dashed border-[var(--jute)]">
+
+      {/* Logo watermark */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <img
+          src={`${import.meta.env.BASE_URL}logo-light.png`}
+          alt=""
+          className="w-[480px] max-w-[80vw] select-none"
+          style={{ opacity: 0.05 }}
+          draggable={false}
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-5 md:px-12 flex flex-col gap-12 md:gap-16">
 
         {/* Top Contact Info */}
         <div className="flex flex-col gap-4 md:gap-6 md:items-center md:text-center">
