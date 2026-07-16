@@ -67,19 +67,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, ease: 'easeOut' }}
-          className="relative mb-5 md:mb-6"
+          className="mb-5 md:mb-6"
         >
           <span className="font-['Allerta_Stencil'] text-[var(--offwhite)]/80 text-xs md:text-base tracking-[0.18em] uppercase">
             PT ANANDA TERRA NUSANTARA — PRODUCT OF INDONESIA
           </span>
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.2 }}
-            whileInView={shouldReduceMotion ? { opacity: 0.92 } : { opacity: 0.92, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 15, delay: 0.5 }}
-            className="absolute -top-8 -right-2 md:-right-16 rubber-stamp"
-          >
-            PRODUCT OF INDONESIA
-          </motion.div>
         </motion.div>
 
         <motion.h1
