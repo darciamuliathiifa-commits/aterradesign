@@ -70,3 +70,66 @@ body {
 .lot-label { white-space: nowrap; color: var(--jute); }
 .lot-leader { flex: 1; border-bottom: 1px dotted var(--jute); margin-bottom: 3px; min-width: 12px; }
 .lot-value { white-space: nowrap; color: var(--ink); }
+
+/* ─── MOBILE GLOBAL RULES ──────────────────────────────────────────── */
+
+/* Use dynamic viewport height so mobile browser chrome never clips the hero */
+:root {
+  --vh: 1svh;
+}
+
+/* Minimum body font size 16px on mobile prevents iOS auto-zoom on input focus */
+@media (max-width: 767px) {
+  body { font-size: 16px; }
+  input, select, textarea, button { font-size: 16px !important; }
+}
+
+/* Replace hover with :active pressed state on touch devices */
+@media (hover: none) {
+  /* Buttons / CTAs: translate down 1px and darken slightly — stamp pressed into paper */
+  a[href], button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a[href]:active, button:active {
+    transform: translateY(1px);
+    filter: brightness(0.88);
+  }
+  /* Don't double-apply on elements that set their own active styles */
+  a[href].no-press:active, button.no-press:active {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Hide scrollbar on the carousel while keeping scroll functionality */
+.carousel-scroll {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE / Edge */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.carousel-scroll::-webkit-scrollbar {
+  display: none;                  /* Chrome / Safari */
+}
+
+/* Ensure fixed nav accounts for safe-area on notched devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+  nav.fixed { padding-top: max(env(safe-area-inset-top), 1rem); }
+}
+
+/* Reduce animation distance on mobile for subtler feel */
+@media (max-width: 767px) {
+  @keyframes slide-up-mobile {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Honor prefers-reduced-motion fully */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

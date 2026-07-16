@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function Navbar() {
@@ -7,104 +7,146 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Products', href: '#products' },
-    { name: 'Origins', href: '#origins' },
-    { name: 'Process', href: '#process' },
-    { name: 'Certifications', href: '#certifications' },
-    { name: 'Contact', href: '#contact' },
+    { num: '01', name: 'About',          href: '#about' },
+    { num: '02', name: 'Products',       href: '#products' },
+    { num: '03', name: 'Origins',        href: '#origins' },
+    { num: '04', name: 'Process',        href: '#process' },
+    { num: '05', name: 'Certifications', href: '#certifications' },
+    { num: '06', name: 'Contact',        href: '#contact' },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
-        isScrolled
-          ? 'bg-[var(--ink)] shadow-none py-4'
-          : 'bg-transparent py-6'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        <a
-          href="#"
-          className="font-['Archivo'] text-[var(--offwhite)] text-2xl md:text-3xl font-black uppercase tracking-[-0.02em]"
-          data-testid="link-logo"
-        >
-          ATERRA
-        </a>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-xs uppercase tracking-[0.1em] hover:text-[var(--jute)] transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-
-        {/* Desktop CTA */}
-        <div className="hidden md:block">
+    <>
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
+          isScrolled ? 'bg-[var(--ink)] py-4' : 'bg-transparent py-6'
+        }`}
+        style={{ paddingTop: `max(env(safe-area-inset-top), ${isScrolled ? '1rem' : '1.5rem'})` }}
+      >
+        <div className="max-w-7xl mx-auto px-5 md:px-12 flex justify-between items-center">
           <a
-            href="#inquiry"
-            className="bg-[var(--stamp)] text-[var(--offwhite)] px-6 py-2.5 rounded-none hover:opacity-90 transition-opacity font-['Archivo'] font-black uppercase text-sm"
-            data-testid="link-inquiry-cta"
+            href="#"
+            className="font-['Archivo'] text-[var(--offwhite)] text-2xl md:text-3xl font-black uppercase tracking-[-0.02em]"
           >
-            Request a Quote
+            ATERRA
           </a>
+
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-xs uppercase tracking-[0.1em] hover:text-[var(--jute)] transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:block">
+            <a
+              href="#inquiry"
+              className="bg-[var(--stamp)] text-[var(--offwhite)] px-6 py-2.5 rounded-none font-['Archivo'] font-black uppercase text-sm hover:opacity-90 active:translate-y-[1px] active:brightness-90 transition-all"
+            >
+              Request a Quote
+            </a>
+          </div>
+
+          {/* Mobile hamburger — 44×44 touch target */}
+          <button
+            className="md:hidden flex flex-col gap-[5px] items-end justify-center w-11 h-11 text-[var(--offwhite)]"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open navigation menu"
+            data-testid="button-mobile-menu"
+          >
+            <span className="block w-6 h-[1.5px] bg-[var(--offwhite)]" />
+            <span className="block w-6 h-[1.5px] bg-[var(--offwhite)]" />
+            <span className="block w-4 h-[1.5px] bg-[var(--offwhite)]" />
+          </button>
         </div>
+      </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-[var(--offwhite)]"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          data-testid="button-mobile-menu"
-        >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Drawer */}
+      {/* Full-screen mobile overlay — manifest index style */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[var(--ink)] border-t border-[var(--jute)] border-dashed mt-4 overflow-hidden"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+            className="fixed inset-0 z-[60] bg-[var(--ink)] flex flex-col"
+            style={{
+              paddingTop: 'env(safe-area-inset-top)',
+              paddingBottom: 'env(safe-area-inset-bottom)',
+            }}
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
+            {/* Header row */}
+            <div className="flex justify-between items-center px-5 py-4 border-b border-dashed border-[var(--jute)]/50 shrink-0">
+              <span className="font-['Archivo'] font-black text-[var(--offwhite)] text-xl uppercase tracking-[-0.02em]">
+                ATERRA
+              </span>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center w-11 h-11 text-[var(--offwhite)] active:text-[var(--jute)] transition-colors"
+                aria-label="Close menu"
+              >
+                <X size={22} />
+              </button>
+            </div>
+
+            {/* Manifest index links */}
+            <nav className="flex flex-col flex-1 overflow-y-auto">
+              {navLinks.map((link, i) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-sm uppercase tracking-[0.1em] hover:text-[var(--jute)] transition-colors py-2"
+                  className={`flex items-center gap-5 px-5 active:bg-[var(--jute)]/10 transition-colors ${
+                    i !== navLinks.length - 1 ? 'border-b border-dashed border-[var(--jute)]/30' : ''
+                  }`}
+                  style={{ minHeight: '56px' }}
                 >
-                  {link.name}
+                  <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] text-xs tracking-[0.1em] shrink-0">
+                    {link.num}
+                  </span>
+                  <span className="font-['IBM_Plex_Mono'] text-[var(--offwhite)] text-base uppercase tracking-[0.08em]">
+                    / {link.name.toUpperCase()}
+                  </span>
                 </a>
               ))}
+            </nav>
+
+            {/* CTA at bottom */}
+            <div className="px-5 py-5 border-t border-dashed border-[var(--jute)]/50 shrink-0">
               <a
                 href="#inquiry"
                 onClick={() => setMobileMenuOpen(false)}
-                className="bg-[var(--stamp)] text-[var(--offwhite)] px-6 py-3 rounded-none text-center font-['Archivo'] font-black uppercase text-sm mt-4 hover:opacity-90 transition-opacity"
+                className="block w-full bg-[var(--stamp)] text-[var(--offwhite)] py-4 text-center font-['Archivo'] font-black uppercase text-sm tracking-wide rounded-none active:brightness-90 active:translate-y-[1px] transition-all"
               >
-                Request a Quote
+                REQUEST A QUOTE
               </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

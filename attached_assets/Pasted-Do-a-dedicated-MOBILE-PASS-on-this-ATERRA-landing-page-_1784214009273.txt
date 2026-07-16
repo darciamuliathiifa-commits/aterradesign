@@ -1,0 +1,46 @@
+Do a dedicated MOBILE PASS on this ATERRA landing page. Goal: on phones it must feel like a native, thumb-friendly mobile experience designed mobile-first — not a shrunken desktop site. Keep the "Export Manifest" art direction (paper/ink/jute/stamp-red, Archivo + IBM Plex Mono, rubber stamps, lot cards) fully intact. Desktop stays as is; everything below applies to screens under 768px unless noted.
+
+GLOBAL MOBILE RULES
+- Use 100dvh / 100svh instead of 100vh everywhere, so the mobile browser URL bar never causes jumping or a cut-off hero.
+- Every touch target at least 44x44px, with comfortable spacing between tappable items.
+- No hover-dependent behavior on touch devices. Replace hover effects with clear :active pressed states — buttons translate down 1px and darken slightly, like a stamp being pressed into paper.
+- Fluid type with clamp(); body text at least 16px on mobile. Every form input font-size at least 16px so iOS never auto-zooms on focus.
+- Horizontal padding 20px, consistent vertical rhythm.
+- Respect safe areas: pad fixed elements with env(safe-area-inset-bottom) / env(safe-area-inset-top).
+
+1. NAVBAR → MOBILE HEADER
+- Slim top bar: ATERRA wordmark left, hamburger right (44px target).
+- The menu opens as a FULL-SCREEN ink-black overlay styled like a manifest index: each link is a big uppercase mono row ("01 / ABOUT", "02 / PRODUCTS", ...), 56px tall, separated by fine dashed rules. Slide-in 250ms, close via X or by tapping a link (smooth scroll). Lock body scroll while open.
+
+2. STICKY BOTTOM ACTION BAR (mobile only — primary conversion path)
+- After the user scrolls past the hero, show a slim fixed bottom bar: ink background, hairline top border, safe-area padded. Left: "REQUEST A QUOTE" button (stamp-red, scrolls to the form). Right: a square WhatsApp icon button (wa.me link). Hide the bar while the inquiry form is visible on screen.
+
+3. HERO
+- Height 100svh. Stack: stencil eyebrow (smaller, letter-spaced), H1 clamped to max 3 lines, mono subheadline max 2 lines, then two FULL-WIDTH stacked buttons, 52px tall (primary stamp-red, secondary outline).
+- Serve a lighter video on mobile: when screen width < 768px, load /public/hero-mobile.mp4 via a small JS check before setting the video src — I will upload a smaller version. If the file is missing or the connection is slow, show the poster image instead. Keep autoplay muted loop playsinline.
+
+4. ORIGIN COFFEES → NATIVE SNAP CAROUSEL
+- The 7 lot cards become a horizontal CSS scroll-snap carousel: each card ~85% of viewport width so the next card peeks at the edge, momentum scrolling, no visible scrollbar. Below the carousel, a mono progress indicator like "LOT 03 / 07" that updates as the user swipes. Keep the full spec-sheet card content readable.
+
+5. EXPORT PROCESS
+- Vertical manifest list: mono numbered markers (01–04) connected by a thin dashed vertical rule on the left, content on the right, generous spacing.
+
+6. CERTIFICATIONS
+- The COFFEE / BRIQUETTES groups become a segmented control styled like document tabs: full-width two-option toggle, 48px tall, mono labels, 1px ink border, active tab ink-filled. Tapping switches the visible list.
+
+7. CORE COMMODITIES + SERVICES
+- Single column, full-width cards with tightened padding so each screenful shows meaningful content — not one giant card per scroll.
+
+8. INQUIRY FORM (native mobile form UX)
+- Single column, full-width fields 52px tall, mono labels ABOVE the fields (never placeholder-only labels).
+- Correct keyboards & autofill: type="email" with autocomplete="email", autocomplete="name" and "organization" on the name/company fields, Country and Origin of Interest as native <select> elements, and a hint on the volume field like "e.g. 2 containers / year".
+- Full-width 52px stamp-red submit button. Success/error message renders directly under the button and scrolls into view.
+
+9. CONTACT / FOOTER
+- Email and WhatsApp become full-width tappable rows (mailto: / wa.me links), all numbers and codes in mono, everything stacked single column.
+
+PERFORMANCE ON MOBILE
+- Lazy-load everything below the hero, serve width-appropriate images (srcset), and prevent layout shift by setting width/height or aspect-ratio on all media. Target Lighthouse mobile performance 90+.
+- Animations shorter and subtler on mobile; fully disabled under prefers-reduced-motion.
+
+After implementing, list anything I need to upload (e.g. hero-mobile.mp4) and any trade-offs you made.
