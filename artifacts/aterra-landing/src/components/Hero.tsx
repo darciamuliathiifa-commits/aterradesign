@@ -5,50 +5,51 @@ export function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Only set video src on mobile to avoid loading a large file on desktop
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    if (window.innerWidth < 768) {
-      el.src = `${import.meta.env.BASE_URL}hero-mobile.mp4`;
-      el.load();
-    }
-  }, []);
-
   return (
     <section
       id="hero-section"
       className="relative w-full flex items-center justify-center overflow-hidden"
       style={{ height: '100svh' }}
     >
-      {/* Desktop background image */}
+      {/* Poster image — always rendered as the base layer / fallback */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat md:block hidden"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('${import.meta.env.BASE_URL}hero-poster.jpg')` }}
       />
 
-      {/* Mobile background image / poster (shown before video loads or if video fails) */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat md:hidden"
-        style={{ backgroundImage: `url('${import.meta.env.BASE_URL}hero-poster.jpg')` }}
-      />
-
-      {/* Mobile video — hidden on desktop, loads only when src is set by JS */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 z-[1] w-full h-full object-cover md:hidden"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster={`${import.meta.env.BASE_URL}hero-poster.jpg`}
-        width={390}
-        height={844}
-        onError={(e) => {
-          // Silently fall back to poster image — no src means the poster stays visible
-          (e.target as HTMLVideoElement).style.display = 'none';
-        }}
-      />
+      {/*
+       * Hero video — single element, srcSet via <source> tags.
+       * Browser picks the first source it can decode.
+       * autoPlay + muted + playsInline are all required for autoplay on iOS/Chrome.
+       * prefers-reduced-motion: video still loads but won't animate — the poster
+       * shows instead because we hide the video element via CSS.
+       */}
+      {!shouldReduceMotion && (
+        <video
+          ref={videoRef}
+          className="absolute inset-0 z-[1] w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={`${import.meta.env.BASE_URL}hero-poster.jpg`}
+          onError={(e) => {
+            (e.target as HTMLVideoElement).style.display = 'none';
+          }}
+        >
+          {/* Desktop: 1280×720 ~5MB */}
+          <source
+            src={`${import.meta.env.BASE_URL}hero.mp4`}
+            type="video/mp4"
+            media="(min-width: 768px)"
+          />
+          {/* Mobile: 854×480 ~2.6MB */}
+          <source
+            src={`${import.meta.env.BASE_URL}hero-mobile.mp4`}
+            type="video/mp4"
+          />
+        </video>
+      )}
 
       {/* Dark overlay */}
       <div
