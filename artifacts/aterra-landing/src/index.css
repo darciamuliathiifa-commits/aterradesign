@@ -15,7 +15,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Archivo', sans-serif;
-  background-color: var(--ink);
+  background-color: var(--paper);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
 }
