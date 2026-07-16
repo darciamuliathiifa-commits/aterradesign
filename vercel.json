@@ -1,5 +1,5 @@
 {
   "installCommand": "pnpm install",
   "buildCommand": "pnpm --filter @workspace/aterra-landing run build",
-  "outputDirectory": "artifacts/aterra-landing/dist"
+  "outputDirectory": "artifacts/aterra-landing/dist/public"
 }
