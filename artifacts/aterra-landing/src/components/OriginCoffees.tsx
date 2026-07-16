@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 const origins = [
   {
     lot: 'LOT 01',
+    shortTitle: 'KINTAMANI',          // "Bali" in region; drop from title at narrow widths
     name: 'Kintamani Bali',
     image: 'origin-kintamani.jpg',
     region: 'Bali',
@@ -16,6 +17,7 @@ const origins = [
   },
   {
     lot: 'LOT 02',
+    shortTitle: 'JEMBER',
     name: 'Jember',
     image: 'origin-jember.jpg',
     region: 'East Java',
@@ -28,18 +30,20 @@ const origins = [
   },
   {
     lot: 'LOT 03',
+    shortTitle: 'IJEN',
     name: 'Ijen',
     image: 'origin-ijen.jpg',
     region: 'East Java',
     altitude: '1,000+ masl',
     process: 'Semi-Washed',
-    variety: 'Arabica / Robusta',
+    variety: 'Arabica/Robusta',       // Slash without spaces — fits on one line
     desc: 'Volcanic plateau coffee processed semi-washed (Giling Basah), producing a distinctly syrupy, full body.',
     tags: ['Smoky', 'Dark Chocolate', 'Spice', 'Syrupy Body'],
     stamp: undefined,
   },
   {
     lot: 'LOT 04',
+    shortTitle: 'JAVA PREANGER',
     name: 'Java Preanger',
     image: 'origin-bandung.jpg',
     region: 'West Java',
@@ -52,6 +56,7 @@ const origins = [
   },
   {
     lot: 'LOT 05',
+    shortTitle: 'LAMPUNG',
     name: 'Lampung',
     image: 'origin-lampung.jpg',
     region: 'Sumatra',
@@ -64,9 +69,10 @@ const origins = [
   },
   {
     lot: 'LOT 06',
+    shortTitle: 'KERINCI',
     name: 'Kerinci',
     image: 'origin-kerinci.jpg',
-    region: 'Jambi, Sumatra',
+    region: 'Jambi',                  // Shortened from "Jambi, Sumatra"
     altitude: '1,500+ masl',
     process: 'Wet Hulled',
     variety: 'Arabica',
@@ -76,6 +82,7 @@ const origins = [
   },
   {
     lot: 'LOT 07',
+    shortTitle: 'PALEMBANG',
     name: 'Palembang',
     image: 'origin-palembang.jpg',
     region: 'South Sumatra',
@@ -90,33 +97,313 @@ const origins = [
 
 type Origin = (typeof origins)[0];
 
-function LotCard({
+// Shared stamp badge — always over a photo, never over text
+function StampBadge({
+  text,
+  shouldReduceMotion,
+}: {
+  text: string;
+  shouldReduceMotion: boolean | null;
+}) {
+  return (
+    <motion.div
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.05 }}
+      whileInView={shouldReduceMotion ? { opacity: 0.95 } : { opacity: 0.95, scale: 1 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.15 }}
+      style={{
+        position: 'absolute',
+        top: '14px',
+        right: '14px',
+        zIndex: 10,
+        fontFamily: "'IBM Plex Mono', monospace",
+        fontSize: '11px',
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        letterSpacing: '1.5px',
+        color: '#B3372B',
+        border: '2px solid #B3372B',
+        background: '#F2ECDD',
+        padding: '6px 10px',
+        transform: 'rotate(-3deg)',
+        whiteSpace: 'nowrap',
+        maxWidth: '60%',
+        lineHeight: 1.3,
+        opacity: 0.95,
+      }}
+    >
+      {text}
+    </motion.div>
+  );
+}
+
+// Compact desktop lot card (2/3/4-col grid)
+function DesktopLotCard({
   origin,
   index,
   shouldReduceMotion,
-  isMobile,
 }: {
   origin: Origin;
   index: number;
   shouldReduceMotion: boolean | null;
-  isMobile: boolean;
 }) {
-  const cardStyle: React.CSSProperties = {
-    border: '1px solid var(--ink)',
-    borderRadius: 0,
-    ...(isMobile
-      ? { width: '85vw', flexShrink: 0, scrollSnapAlign: 'start' }
-      : {}),
-  };
+  // Short labels so values have room to breathe
+  const tableRows: [string, string][] = [
+    ['REG.',  origin.region],
+    ['ALT.',  origin.altitude],
+    ['PROC.', origin.process],
+    ['VAR.',  origin.variety],
+  ];
 
-  const inner = (
-    <div className="bg-[var(--paper)] flex flex-col relative" style={cardStyle}>
-      {/* Origin photo flush at top — stamp lives here, over the photo only */}
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={
+        shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.08 }
+      }
+      className="h-full"
+    >
+      <div
+        className="bg-[var(--paper)] flex flex-col h-full"
+        style={{ border: '1px solid var(--ink)' }}
+      >
+        {/* Photo — 4:3, stamp lives here */}
+        <div
+          className="w-full shrink-0 relative"
+          style={{ aspectRatio: '4/3', borderBottom: '1px solid var(--ink)' }}
+        >
+          <div className="absolute inset-0 overflow-hidden">
+            <img
+              src={`${import.meta.env.BASE_URL}${origin.image}`}
+              alt={`${origin.name} coffee origin`}
+              className="photo-filter w-full h-full object-cover"
+              loading="lazy"
+              width={600}
+              height={450}
+            />
+          </div>
+          {origin.stamp && (
+            <StampBadge text={origin.stamp} shouldReduceMotion={shouldReduceMotion} />
+          )}
+        </div>
+
+        {/* Card body */}
+        <div
+          className="flex flex-col flex-1"
+          style={{ padding: '1rem' }}
+        >
+          {/* Lot title — one line, never wraps */}
+          <div
+            className="font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase font-semibold mb-2 whitespace-nowrap overflow-hidden"
+            style={{ fontSize: '11px', letterSpacing: '0.08em', textOverflow: 'ellipsis' }}
+          >
+            {origin.lot} — {origin.shortTitle}
+          </div>
+
+          <div style={{ height: '1px', background: 'var(--jute)', marginBottom: '8px' }} />
+
+          {/* Data table — compact, no wrapping */}
+          <div className="flex flex-col mb-2" style={{ gap: '3px' }}>
+            {tableRows.map(([label, value]) => (
+              <div
+                key={label}
+                className="flex items-baseline"
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: '12px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  gap: '4px',
+                  overflow: 'hidden',
+                }}
+              >
+                <span
+                  className="shrink-0"
+                  style={{ color: 'var(--jute)', whiteSpace: 'nowrap' }}
+                >
+                  {label}
+                </span>
+                {/* Dotted leader */}
+                <span
+                  className="flex-1 self-end"
+                  style={{
+                    borderBottom: '1px dotted var(--jute)',
+                    marginBottom: '3px',
+                    minWidth: '8px',
+                    opacity: 0.5,
+                  }}
+                />
+                <span
+                  className="shrink-0"
+                  style={{ color: 'var(--ink)', whiteSpace: 'nowrap', fontWeight: 500 }}
+                >
+                  {value}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div
+            style={{
+              height: '1px',
+              background: 'var(--jute)',
+              opacity: 0.5,
+              marginBottom: '10px',
+            }}
+          />
+
+          {/* Description — 2-line clamp, flex-1 so chips stay at bottom */}
+          <p
+            className="font-['Archivo'] text-[var(--ink)] leading-[1.6] flex-1 line-clamp-2"
+            style={{ fontSize: '13px', marginBottom: '12px' }}
+          >
+            {origin.desc}
+          </p>
+
+          {/* Taste chips — max 3, 10px mono, anchored to bottom */}
+          <div className="flex flex-wrap gap-1.5 mt-auto">
+            {origin.tags.slice(0, 3).map((tag) => (
+              <span
+                key={tag}
+                className="font-['IBM_Plex_Mono'] font-semibold uppercase text-[var(--ink)] bg-transparent"
+                style={{
+                  fontSize: '10px',
+                  letterSpacing: '0.05em',
+                  border: '1px solid var(--ink)',
+                  padding: '3px 6px',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+            {origin.tags.length > 3 && (
+              <span
+                className="font-['IBM_Plex_Mono'] font-semibold uppercase"
+                style={{
+                  fontSize: '10px',
+                  letterSpacing: '0.05em',
+                  color: 'var(--jute)',
+                  padding: '3px 0',
+                }}
+              >
+                +{origin.tags.length - 3}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// CTA card — 8th cell in the 4-col grid
+function CtaCard({ index, shouldReduceMotion }: { index: number; shouldReduceMotion: boolean | null }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={
+        shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.08 }
+      }
+      className="h-full"
+    >
+      <div
+        className="flex flex-col justify-between h-full"
+        style={{ background: 'var(--ink)', border: '1px solid var(--jute)' }}
+      >
+        <div style={{ padding: '1.5rem' }} className="flex flex-col flex-1">
+          {/* Mono eyebrow */}
+          <div
+            className="font-['IBM_Plex_Mono'] uppercase font-semibold mb-4"
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.08em',
+              color: 'var(--jute)',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            LOT 08 — YOUR SELECTION
+          </div>
+
+          {/* Dashed rule */}
+          <div
+            style={{
+              height: '1px',
+              borderTop: '1px dashed var(--jute)',
+              opacity: 0.5,
+              marginBottom: '1.25rem',
+            }}
+          />
+
+          {/* Heading */}
+          <h3
+            className="font-['Archivo'] font-black uppercase leading-[1.1] tracking-[-0.02em]"
+            style={{
+              fontSize: 'clamp(1rem, 1.4vw, 1.25rem)',
+              color: 'var(--offwhite)',
+              marginBottom: '0.75rem',
+            }}
+          >
+            REQUEST FULL CATALOG &amp; SAMPLES
+          </h3>
+
+          {/* Body line */}
+          <p
+            className="font-['Archivo'] leading-[1.6] flex-1"
+            style={{ fontSize: '13px', color: 'var(--offwhite)', opacity: 0.7, marginBottom: '1.5rem' }}
+          >
+            Cupping notes and green samples available per lot.
+          </p>
+
+          {/* CTA button */}
+          <a
+            href="#inquiry"
+            className="inline-block font-['Archivo'] font-black uppercase text-center transition-opacity hover:opacity-90 active:translate-y-px"
+            style={{
+              background: '#B3372B',
+              color: '#FAF7EF',
+              padding: '12px 16px',
+              fontSize: '12px',
+              letterSpacing: '0.08em',
+              textDecoration: 'none',
+              marginTop: 'auto',
+            }}
+          >
+            REQUEST A QUOTE
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Mobile carousel card — wider, richer (all tags, full lot name)
+function MobileLotCard({
+  origin,
+  shouldReduceMotion,
+}: {
+  origin: Origin;
+  shouldReduceMotion: boolean | null;
+}) {
+  return (
+    <div
+      className="bg-[var(--paper)] flex flex-col shrink-0"
+      style={{
+        width: '85vw',
+        scrollSnapAlign: 'start',
+        border: '1px solid var(--ink)',
+      }}
+    >
+      {/* Photo */}
       <div
         className="w-full shrink-0 relative"
-        style={{ aspectRatio: '3/2', borderBottom: '1px solid var(--ink)' }}
+        style={{ aspectRatio: '4/3', borderBottom: '1px solid var(--ink)' }}
       >
-        {/* Inner div clips the image to the aspect-ratio box */}
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={`${import.meta.env.BASE_URL}${origin.image}`}
@@ -124,51 +411,26 @@ function LotCard({
             className="photo-filter w-full h-full object-cover"
             loading="lazy"
             width={600}
-            height={400}
+            height={450}
           />
         </div>
-
-        {/* Stamp: top-right corner of the photo, never overlaps text */}
         {origin.stamp && (
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.05 }}
-            whileInView={shouldReduceMotion ? { opacity: 0.95 } : { opacity: 0.95, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.15 }}
-            style={{
-              position: 'absolute',
-              top: '14px',
-              right: '14px',
-              zIndex: 10,
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '11px',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '1.5px',
-              color: '#B3372B',
-              border: '2px solid #B3372B',
-              background: '#F2ECDD',
-              padding: '6px 10px',
-              transform: 'rotate(-3deg)',
-              whiteSpace: 'nowrap',
-              maxWidth: '60%',
-              lineHeight: 1.3,
-              opacity: 0.95,
-            }}
-          >
-            {origin.stamp}
-          </motion.div>
+          <StampBadge text={origin.stamp} shouldReduceMotion={shouldReduceMotion} />
         )}
       </div>
 
-      {/* Card body — no stamps, no overlapping elements */}
-      <div className="flex flex-col flex-1 relative" style={{ padding: '1.25rem' }}>
-        <div className="font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase tracking-[0.1em] font-semibold text-sm mb-3">
+      {/* Body */}
+      <div className="flex flex-col flex-1" style={{ padding: '1.25rem' }}>
+        <div
+          className="font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase font-semibold mb-3 whitespace-nowrap overflow-hidden"
+          style={{ fontSize: '12px', letterSpacing: '0.1em', textOverflow: 'ellipsis' }}
+        >
           {origin.lot} — {origin.name.toUpperCase()}
         </div>
 
-        <div className="w-full mb-3" style={{ height: '1px', background: 'var(--jute)' }} />
+        <div style={{ height: '1px', background: 'var(--jute)', marginBottom: '10px' }} />
 
-        <div className="flex flex-col gap-1 mb-3">
+        <div className="flex flex-col mb-3" style={{ gap: '4px' }}>
           {(
             [
               ['REGION',   origin.region],
@@ -177,17 +439,41 @@ function LotCard({
               ['VARIETY',  origin.variety],
             ] as [string, string][]
           ).map(([label, value]) => (
-            <div key={label} className="lot-row">
-              <span className="lot-label">{label}</span>
-              <div className="lot-leader" />
-              <span className="lot-value">{value}</span>
+            <div
+              key={label}
+              className="flex items-baseline"
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: '0.68rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.07em',
+                gap: '4px',
+              }}
+            >
+              <span className="shrink-0 whitespace-nowrap" style={{ color: 'var(--jute)' }}>
+                {label}
+              </span>
+              <span
+                className="flex-1 self-end"
+                style={{
+                  borderBottom: '1px dotted var(--jute)',
+                  marginBottom: '3px',
+                  minWidth: '8px',
+                  opacity: 0.5,
+                }}
+              />
+              <span className="shrink-0 whitespace-nowrap" style={{ color: 'var(--ink)', fontWeight: 500 }}>
+                {value}
+              </span>
             </div>
           ))}
         </div>
 
-        <div className="w-full mb-3" style={{ height: '1px', background: 'var(--jute)', opacity: 0.5 }} />
+        <div style={{ height: '1px', background: 'var(--jute)', opacity: 0.5, marginBottom: '12px' }} />
 
-        <p className="font-['Archivo'] text-[var(--ink)] text-sm leading-[1.65] mb-4 flex-1 line-clamp-2">
+        <p
+          className="font-['Archivo'] text-[var(--ink)] text-sm leading-[1.65] mb-4 flex-1 line-clamp-2"
+        >
           {origin.desc}
         </p>
 
@@ -195,8 +481,13 @@ function LotCard({
           {origin.tags.map((tag) => (
             <span
               key={tag}
-              className="border border-[var(--ink)] text-[var(--ink)] px-2 py-1 font-['IBM_Plex_Mono'] font-semibold uppercase tracking-[0.05em] rounded-none bg-transparent"
-              style={{ fontSize: '0.62rem' }}
+              className="font-['IBM_Plex_Mono'] font-semibold uppercase text-[var(--ink)] bg-transparent"
+              style={{
+                fontSize: '0.62rem',
+                letterSpacing: '0.05em',
+                border: '1px solid var(--ink)',
+                padding: '4px 8px',
+              }}
             >
               {tag}
             </span>
@@ -204,21 +495,6 @@ function LotCard({
         </div>
       </div>
     </div>
-  );
-
-  if (isMobile) return inner;
-
-  return (
-    <motion.div
-      key={origin.name}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={index === 6 ? 'md:col-span-2 lg:col-span-1' : ''}
-    >
-      {inner}
-    </motion.div>
   );
 }
 
@@ -284,7 +560,7 @@ export function OriginCoffees() {
           </div>
         </motion.div>
 
-        {/* Mobile: horizontal snap carousel */}
+        {/* Mobile: horizontal snap carousel (7 origin cards only) */}
         {isMobile ? (
           <div className="flex flex-col gap-4">
             <div
@@ -297,12 +573,10 @@ export function OriginCoffees() {
               }}
             >
               {origins.map((origin, i) => (
-                <LotCard
+                <MobileLotCard
                   key={origin.name}
                   origin={origin}
-                  index={i}
                   shouldReduceMotion={shouldReduceMotion}
-                  isMobile={true}
                 />
               ))}
             </div>
@@ -331,17 +605,30 @@ export function OriginCoffees() {
             </div>
           </div>
         ) : (
-          /* Desktop: 3-column grid */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8 px-5 md:px-12">
+          /*
+           * Desktop grid:
+           *   2-col  (md  768–1023px)
+           *   3-col  (lg  1024–1279px)
+           *   4-col  (xl  ≥1280px)   → 7 cards + 1 CTA = exactly 2 rows
+           *
+           * grid-rows auto-stretches all cells in a row to equal height.
+           * Cards use flex-col h-full so chips stay anchored to the bottom.
+           */
+          <div
+            className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-5 px-5 md:px-12"
+            style={{ gridAutoRows: '1fr' }}
+          >
             {origins.map((origin, i) => (
-              <LotCard
+              <DesktopLotCard
                 key={origin.name}
                 origin={origin}
                 index={i}
                 shouldReduceMotion={shouldReduceMotion}
-                isMobile={false}
               />
             ))}
+
+            {/* 8th cell — CTA card */}
+            <CtaCard index={origins.length} shouldReduceMotion={shouldReduceMotion} />
           </div>
         )}
       </div>
