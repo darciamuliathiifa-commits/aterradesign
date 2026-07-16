@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "ATERRA Landing Page"
+version = "1.0.0"
+id = "artifacts/aterra-landing"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18602
+
+[services.development]
+run = "pnpm --filter @workspace/aterra-landing run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/aterra-landing", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/aterra-landing/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18602"
+BASE_PATH = "/"

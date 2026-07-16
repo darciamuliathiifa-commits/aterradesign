@@ -1,0 +1,52 @@
+Build a single-page landing website for "ATERRA (PT Ananda Terra Nusantara)", an Indonesian export company selling premium coffee, cinnamon (cassia vera), nutmeg, and charcoal briquettes to international B2B buyers. All website copy in English. Use React + Vite + Tailwind CSS. This is a static landing page: no auth, no CMS, no custom backend server.
+
+DEPLOYMENT TARGET (IMPORTANT): This code will be pushed to GitHub and deployed on VERCEL — it will NOT be hosted on Replit. Keep it a clean, standard Vite project that builds with "npm run build" and outputs to "dist". Do not add any Replit-specific deployment configuration or Replit-only dependencies. Include a proper .gitignore (node_modules, dist, .env), read any secrets from environment variables prefixed with VITE_, and provide a .env.example file.
+
+DESIGN SYSTEM
+- Colors: deep forest green #1B3A2D (dark sections, navbar), roasted brown #4A2C1A, parchment #F5EFE4 (light sections), copper #B4713D (buttons, accents, tags), off-white #FAF8F3 (text on dark), ink #22201C (text on light).
+- Fonts (Google Fonts): "Fraunces" for headings, "Plus Jakarta Sans" for body.
+- Alternate dark and light section backgrounds for rhythm. Subtle fade-up on scroll, nothing flashy. Respect prefers-reduced-motion.
+- Premium, earthy, established-exporter feel. Generous whitespace.
+
+SECTIONS (top to bottom)
+
+1. NAVBAR: transparent over the hero, becomes solid deep-green with shadow on scroll (smooth 300ms transition). Left: "ATERRA" wordmark. Links: About, Products, Origins, Process, Certifications, Contact (smooth scroll). Right: copper button "Request a Quote" scrolling to the inquiry form. Hamburger menu on mobile.
+
+2. HERO: full-viewport (100vh) background VIDEO with a dark overlay so white text stays readable. Structure: <video autoplay muted loop playsinline> with object-fit cover and a poster image fallback, then an overlay div with linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.65)), then centered content: H1 "From Indonesian Soil to the World", subheadline "Premium coffee, cinnamon, nutmeg & charcoal briquettes — sourced directly from smallholder farmers, delivered to global markets.", primary button "Explore Our Commodities" (scrolls to products) and outline button "Export Inquiry" (scrolls to form). Use placeholder video at /public/hero.mp4 and poster at /public/hero-poster.jpg — I will upload the real files.
+
+3. ABOUT US: two columns (stack on mobile). Left: heading "About ATERRA" and this copy: "Ananda Terra Nusantara (ATERRA) is an Indonesia-based export company specializing in premium agricultural and natural commodities, including coffee, cinnamon, nutmeg, and charcoal briquettes — sourced directly from smallholder farmers and trusted regional suppliers across Indonesia's most fertile growing regions, including Sumatra and Java. We work closely with local farming communities to ensure consistent quality, sustainable harvesting practices, and fair trade partnerships, while maintaining strict quality control from farm to port. Our export operations are supported by established logistics networks, enabling reliable, timely delivery to international buyers in the food & beverage, spice, and energy sectors." Right: image placeholder /public/about.jpg. Below the copy, three small badges: "Direct from Farmers", "Sustainable Sourcing", "Farm-to-Port QC".
+
+4. OUR SERVICES: three icon cards — "Commodity Export" (coffee, cinnamon, nutmeg, briquettes), "Logistics & Tracking", "Warehousing". One short sentence each.
+
+5. CORE COMMODITIES: heading "Our Core Commodities", grid of 4 large image cards:
+- Coffee — "Arabica and Robusta beans from Sumatra, Java, Toraja, and other renowned growing regions."
+- Cinnamon (Cassia Vera) — "High-quality cinnamon bark from West Sumatra, among the world's largest cassia-producing regions."
+- Nutmeg — "Whole nutmeg and mace from the Banda Islands and North Sulawesi."
+- Charcoal Briquettes — "Coconut shell and wood-based briquettes for BBQ, shisha, and industrial fuel markets."
+Image placeholders: /public/coffee.jpg, /public/cinnamon.jpg, /public/nutmeg.jpg, /public/briquettes.jpg.
+
+6. ORIGIN COFFEES (signature section, dark background): heading "Origin Coffees", subheading "Seven distinct origins, one standard of quality." Grid of 7 cards, each with origin name, region line, short description (max 2 lines), and taste notes as small copper tag chips:
+- Kintamani Bali (900–1,600 masl, Bali) — volcanic-slope arabica under the traditional Subak Abian system; Indonesia's first GI-certified coffee (2008); fully washed, bright and clean. Add a badge "GI Certified 2008". Tags: Bright Citrus, Floral, Honey Finish, Clean Cup.
+- Jember (East Java) — balanced Robusta region prized by blenders for consistent profile and reliable bulk supply. Tags: Full Body, Roasted Nuts, Caramel, Low Acidity.
+- Ijen (East Java, 1,000+ masl) — volcanic plateau coffee, semi-washed (Giling Basah), syrupy body. Tags: Smoky, Dark Chocolate, Spice, Syrupy Body.
+- Bandung / Java Preanger (West Java) — heritage colonial-era growing region, smooth approachable profile. Tags: Medium Body, Caramel, Toasted Almond, Clean Finish.
+- Lampung (Sumatra) — Indonesia's largest Robusta region, bold backbone of commercial blends. Tags: Bold, Strong Bitterness, Earthy, Robust Finish.
+- Kerinci (Jambi, Sumatra, 1,500+ masl) — one of Indonesia's highest growing regions, complex and bright for a Sumatran. Tags: Dark Fruit, Herbal Spice, Heavy Body, Rich Aftertaste.
+- Palembang (South Sumatra) — bold lowland Robusta, traditional tubruk-style character, competitive pricing. Tags: Bold, Smoky, Thick Mouthfeel, Low Acidity.
+
+7. EXPORT PROCESS: heading "Export Process", tagline "Seamless from Farm to Port". Horizontal 4-step timeline (vertical on mobile):
+(1) Lot Selection — "Buyer receives cupping notes and a green sample. Approval triggers procurement from contracted cooperatives at the agreed price."
+(2) Milling & Grading — "Wet-hulled or washed processing at our certified dry mill in Medan. Screen 15+ grading and defect sorting to SCA standards."
+(3) Documentation — "Phytosanitary certificate, COO, ICO certificate, cupping report, and lot traceability issued per shipment."
+(4) Shipment — "FCL or LCL from Belawan or Tanjung Priok. GrainPro or jute bagging per buyer specification. Lead time 3–5 weeks."
+
+8. CERTIFICATIONS: heading "Certifications", subheading "Compliance and trust". Two columns or tabs: COFFEE — Certificate of Origin (COO), ICO Certificate of Origin, Phytosanitary Certificate, Fumigation Certificate; BRIQUETTES — MSDS, Certificate of Analysis (COA), Fumigation Certificate. Each item: name + one-line explanation.
+
+9. EXPORT INQUIRY: heading "Export Inquiry", subheading "Tell us what you need — our export team replies within 24 hours." Form fields: Full Name, Company Name, Email, Country, Origin of Interest (select: the 7 coffee origins + Cinnamon + Nutmeg + Charcoal Briquettes), Estimated Annual Volume, Message. Copper submit button "Send Inquiry". On submit, open WhatsApp (https://wa.me/6289510519278) with the form contents pre-filled as a formatted message, and show a success note. No backend needed for now — I may connect this form to Supabase later, so keep the submit logic in one clean, separate function that's easy to swap.
+
+10. CONTACT + FOOTER: Export Office: Bandung, Indonesia · Email: anandaterranusantara@gmail.com (mailto link) · WhatsApp: +62 895-1051-9278 (wa.me link) · Ports of Loading: Tanjung Priok (Jakarta) & Belawan (Medan). Footer: ATERRA wordmark, quick links, © 2026 PT Ananda Terra Nusantara.
+
+QUALITY BAR
+- Fully responsive down to 375px. Lazy-load all images below the hero.
+- SEO: title "ATERRA — Indonesian Coffee, Spices & Charcoal Briquettes Exporter", meta description, Open Graph tags.
+- Use royalty-free placeholder images where I haven't uploaded files yet, and list every placeholder path I need to replace.
