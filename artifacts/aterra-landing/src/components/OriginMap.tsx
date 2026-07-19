@@ -49,11 +49,12 @@ function MapMarker({
 }) {
   return (
     <motion.g
-      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4 }}
-      whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
+      variants={{
+        hidden: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.4 },
+        visible: shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1 },
+      }}
       transition={{ type: 'spring', stiffness: 300, damping: 18, delay: index * 0.08 }}
-      style={{ transformOrigin: `${pin.x}px ${pin.y}px`, cursor: 'pointer' }}
+      style={{ transformOrigin: `${pin.x}px ${pin.y}px`, transformBox: 'fill-box', cursor: 'pointer' }}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
     >
@@ -161,10 +162,13 @@ export function OriginMap() {
 
         {/* Chart — horizontally scrollable on mobile so labels stay legible */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6 }}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+          }}
           className="relative overflow-x-auto carousel-scroll"
           style={{ border: '1px solid var(--ink)', WebkitOverflowScrolling: 'touch' }}
         >
