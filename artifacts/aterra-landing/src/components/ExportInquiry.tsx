@@ -66,7 +66,7 @@ Message: ${data.message}`;
         >
           <div className="flex items-center gap-4">
             <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] uppercase tracking-[0.1em] text-sm font-semibold whitespace-nowrap">
-              DOC 07 / EXPORT INQUIRY
+              DOC 08 / EXPORT INQUIRY
             </span>
             <div className="flex-1" style={{ height: '1px', background: 'var(--jute)' }} />
           </div>

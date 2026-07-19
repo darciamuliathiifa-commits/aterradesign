@@ -41,7 +41,7 @@ export function CoreCommodities() {
         >
           <div className="flex items-center gap-4">
             <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] uppercase tracking-[0.1em] text-sm font-semibold whitespace-nowrap">
-              DOC 03 / CORE COMMODITIES
+              DOC 04 / CORE COMMODITIES
             </span>
             <div className="flex-1" style={{ height: '1px', background: 'var(--jute)' }} />
           </div>

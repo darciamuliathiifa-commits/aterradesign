@@ -32,8 +32,8 @@ export function Footer() {
           </h3>
 
           {/* Office location — plain text */}
-          <p className="font-['IBM_Plex_Mono'] text-[var(--offwhite)]/80 text-sm uppercase tracking-[0.05em]">
-            EXPORT OFFICE: BANDUNG, INDONESIA
+          <p className="font-['IBM_Plex_Mono'] text-[var(--offwhite)]/80 text-sm uppercase tracking-[0.05em] leading-[1.7] md:max-w-lg md:mx-auto">
+            EXPORT OFFICE: KOMPLEK GRIYA JATIPUTRA NO. 101, RT 004 RW 013, PASIRJATI, KEC. UJUNG BERUNG, KOTA BANDUNG — JAWA BARAT 40616
           </p>
 
           {/* Email — full-width tappable row on mobile */}

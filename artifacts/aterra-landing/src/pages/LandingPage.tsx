@@ -2,6 +2,7 @@ import { Navbar }             from '@/components/Navbar';
 import { Hero }               from '@/components/Hero';
 import { AboutUs }            from '@/components/AboutUs';
 import { OurServices }        from '@/components/OurServices';
+import { OriginMap }          from '@/components/OriginMap';
 import { CoreCommodities }    from '@/components/CoreCommodities';
 import { OriginCoffees }      from '@/components/OriginCoffees';
 import { ExportProcess }      from '@/components/ExportProcess';
@@ -20,6 +21,7 @@ export default function LandingPage() {
       <Hero />
       <AboutUs />
       <OurServices />
+      <OriginMap />
       <CoreCommodities />
       <OriginCoffees />
       <ExportProcess />

@@ -79,7 +79,7 @@ export function Certifications() {
         >
           <div className="flex items-center gap-4">
             <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] uppercase tracking-[0.1em] text-sm font-semibold whitespace-nowrap">
-              DOC 06 / CERTIFICATIONS
+              DOC 07 / CERTIFICATIONS
             </span>
             <div className="flex-1" style={{ height: '1px', background: 'var(--jute)' }} />
           </div>

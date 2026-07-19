@@ -35,10 +35,10 @@ const steps = [
   {
     num: '04.',
     title: 'SHIPMENT',
-    desc: 'FCL or LCL from Belawan or Tanjung Priok. GrainPro or jute bagging per buyer specification. Lead time 3–5 weeks.',
-    chip: 'LEAD TIME: 3–5 WEEKS',
-    image: 'commodity-charcoal.jpg',
-    imageAlt: 'Container shipment from Belawan and Tanjung Priok ports',
+    desc: 'FCL or LCL from Belawan or Tanjung Priok. GrainPro or jute bagging per buyer specification. Lead time 2–5 weeks.',
+    chip: 'LEAD TIME: 2–5 WEEKS',
+    image: 'shipment.jpg',
+    imageAlt: 'Charcoal briquettes packed and boxed for export shipment',
     photoRight: false,
     stamp: false,
   },
@@ -63,7 +63,7 @@ export function ExportProcess() {
         >
           <div className="flex items-center gap-4">
             <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] uppercase tracking-[0.1em] text-sm font-semibold whitespace-nowrap">
-              DOC 05 / EXPORT PROCESS
+              DOC 06 / EXPORT PROCESS
             </span>
             <div className="flex-1" style={{ height: '1px', background: 'var(--jute)' }} />
           </div>
