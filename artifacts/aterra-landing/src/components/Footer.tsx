@@ -82,7 +82,7 @@ export function Footer() {
           <div>
             <img
               src={`${import.meta.env.BASE_URL}logo-light.png`}
-              alt="ATERRA — PT Ananda Terra Nusantara"
+              alt="ATERRA, PT Ananda Terra Nusantara"
               className="h-[30px] w-auto object-contain"
             />
           </div>

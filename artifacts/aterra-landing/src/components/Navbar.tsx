@@ -63,7 +63,7 @@ export function Navbar() {
           <a href="#" className="flex items-center shrink-0">
             <img
               src={`${import.meta.env.BASE_URL}logo-light.png`}
-              alt="ATERRA — PT Ananda Terra Nusantara"
+              alt="ATERRA, PT Ananda Terra Nusantara"
               className="h-[30px] md:h-[36px] w-auto object-contain"
               style={{ imageRendering: 'auto' }}
             />
@@ -135,7 +135,7 @@ export function Navbar() {
             <div className="flex justify-between items-center px-5 py-4 border-b border-dashed border-[var(--jute)]/50 shrink-0">
               <img
                 src={`${import.meta.env.BASE_URL}logo-light.png`}
-                alt="ATERRA — PT Ananda Terra Nusantara"
+                alt="ATERRA, PT Ananda Terra Nusantara"
                 className="h-[30px] w-auto object-contain"
               />
               <button

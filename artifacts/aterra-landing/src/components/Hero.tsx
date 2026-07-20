@@ -70,7 +70,7 @@ export function Hero() {
           className="mb-5 md:mb-6"
         >
           <span className="font-['Allerta_Stencil'] text-[var(--offwhite)]/80 text-xs md:text-base tracking-[0.18em] uppercase">
-            PT ANANDA TERRA NUSANTARA — PRODUCT OF INDONESIAN
+            PT ANANDA TERRA NUSANTARA, PRODUCT OF INDONESIAN
           </span>
         </motion.div>
 

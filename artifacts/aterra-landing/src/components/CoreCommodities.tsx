@@ -10,7 +10,7 @@ const commodities = [
   {
     title: 'Cinnamon (Cassia Vera)',
     image: 'commodity-cinnamon.jpg',
-    description: 'High-quality cinnamon bark from West Sumatra, among the world\'s largest cassia-producing regions.',
+    description: 'High quality cinnamon bark from West Sumatra, among the world\'s largest cassia producing regions.',
   },
   {
     title: 'Nutmeg',
@@ -20,7 +20,7 @@ const commodities = [
   {
     title: 'Charcoal Briquettes',
     image: 'commodity-charcoal.jpg',
-    description: 'Coconut shell and wood-based briquettes for BBQ, shisha, and industrial fuel markets.',
+    description: 'Coconut shell and wood based briquettes for BBQ, shisha, and industrial fuel markets.',
   },
 ];
 

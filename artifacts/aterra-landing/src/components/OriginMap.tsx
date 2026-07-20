@@ -192,7 +192,7 @@ export function OriginMap() {
                   fill: 'var(--jute)',
                 }}
               >
-                FIG. 01 — REPUBLIC OF INDONESIA / COFFEE GROWING REGIONS
+                FIG. 01 REPUBLIC OF INDONESIA / COFFEE GROWING REGIONS
               </text>
               <line x1={14} y1={34} x2={396} y2={34} stroke="var(--jute)" strokeWidth={1} strokeDasharray="3 3" />
 

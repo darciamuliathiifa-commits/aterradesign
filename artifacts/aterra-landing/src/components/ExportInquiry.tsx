@@ -78,7 +78,7 @@ Message: ${data.message}`;
               EXPORT INQUIRY
             </h2>
             <p className="font-['IBM_Plex_Mono'] text-[var(--ink)]/70 text-sm uppercase tracking-[0.05em]">
-              Tell us what you need — our export team replies within 24 hours.
+              Tell us what you need. Our export team replies within 24 hours.
             </p>
           </div>
         </motion.div>
@@ -277,7 +277,7 @@ Message: ${data.message}`;
                     transition={{ duration: 0.4, ease: 'easeOut' }}
                     className="text-[var(--ink)] font-semibold font-['IBM_Plex_Mono'] text-sm tracking-[0.05em] uppercase text-center"
                   >
-                    ✓ THANK YOU — OUR EXPORT TEAM WILL REPLY WITHIN 24 HOURS.
+                    ✓ THANK YOU. OUR EXPORT TEAM WILL REPLY WITHIN 24 HOURS.
                   </motion.p>
                 )}
               </AnimatePresence>

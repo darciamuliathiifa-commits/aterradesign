@@ -12,7 +12,7 @@ const coffeeCerts = [
   },
   {
     name: 'PHYTOSANITARY CERTIFICATE',
-    desc: 'Government-issued health certificate confirming the shipment is free of pests and diseases.',
+    desc: 'Government issued health certificate confirming the shipment is free of pests and diseases.',
   },
   {
     name: 'FUMIGATION CERTIFICATE',
@@ -27,7 +27,7 @@ const briquetteCerts = [
   },
   {
     name: 'CERTIFICATE OF ANALYSIS (COA)',
-    desc: 'Lab-certified quality analysis confirming composition, moisture content, and calorific value.',
+    desc: 'Lab certified quality analysis confirming composition, moisture content, and calorific value.',
   },
   {
     name: 'FUMIGATION CERTIFICATE',
