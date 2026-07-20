@@ -19,7 +19,7 @@ const services = [
     icon: Warehouse,
     title: 'Warehousing',
     description:
-      'Secure, climate-aware storage facilities to maintain commodity quality from intake through export.',
+      'Secure, climate aware storage facilities to maintain commodity quality from intake through export.',
   },
 ];
 

@@ -29,14 +29,15 @@ const steps = [
     chip: '5 DOCS PER SHIPMENT',
     image: 'commodity-coffee.jpg',
     imageAlt: 'Export documentation and coffee lot traceability',
+    imagePosition: 'center 100%',
     photoRight: true,
     stamp: false,
   },
   {
     num: '04.',
     title: 'SHIPMENT',
-    desc: 'FCL or LCL from Belawan or Tanjung Priok. GrainPro or jute bagging per buyer specification. Lead time 2–5 weeks.',
-    chip: 'LEAD TIME: 2–5 WEEKS',
+    desc: 'FCL or LCL from Belawan or Tanjung Priok. GrainPro or jute bagging per buyer specification. Lead time 2 to 5 weeks.',
+    chip: 'LEAD TIME: 2 TO 5 WEEKS',
     image: 'shipment.jpg',
     imageAlt: 'Charcoal briquettes packed and boxed for export shipment',
     photoRight: false,
@@ -138,6 +139,7 @@ export function ExportProcess() {
                       src={`${import.meta.env.BASE_URL}${step.image}`}
                       alt={step.imageAlt}
                       className="photo-filter w-full h-full object-cover"
+                      style={{ objectPosition: (step as any).imagePosition || 'center' }}
                       loading="lazy"
                       width={900}
                       height={600}
@@ -226,6 +228,7 @@ export function ExportProcess() {
                       src={`${import.meta.env.BASE_URL}${step.image}`}
                       alt={step.imageAlt}
                       className="photo-filter w-full h-full object-cover"
+                      style={{ objectPosition: (step as any).imagePosition || 'center' }}
                       loading="lazy"
                       width={900}
                       height={600}

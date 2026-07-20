@@ -8,12 +8,12 @@ const origins = [
     name: 'Kintamani Bali',
     image: 'origin-kintamani.jpg',
     region: 'Bali',
-    altitude: '900–1,600 masl',
+    altitude: '900 to 1,600 masl',
     process: 'Fully Washed',
     variety: 'Arabica',
-    desc: "Volcanic-slope arabica under the traditional Subak Abian cooperative system; Indonesia's first GI certified coffee, fully washed for a bright, clean cup.",
+    desc: "Volcanic slope arabica under the traditional Subak Abian cooperative system; Indonesia's first GI certified coffee, fully washed for a bright, clean cup.",
     tags: ['Bright Citrus', 'Floral', 'Honey Finish', 'Clean Cup'],
-    stamp: 'GI CERTIFIED — 2008',
+    stamp: 'GI CERTIFIED, 2008',
   },
   {
     lot: 'LOT 02',
@@ -21,7 +21,7 @@ const origins = [
     name: 'Jember',
     image: 'origin-jember.jpg',
     region: 'East Java',
-    altitude: '400–900 masl',
+    altitude: '400 to 900 masl',
     process: 'Wet Hulled',
     variety: 'Robusta',
     desc: 'A balanced Robusta region prized by international blenders for its consistent profile and reliable bulk supply.',
@@ -35,9 +35,9 @@ const origins = [
     image: 'origin-ijen.jpg',
     region: 'East Java',
     altitude: '1,000+ masl',
-    process: 'Semi-Washed',
+    process: 'Semi Washed',
     variety: 'Arabica/Robusta',       // Slash without spaces — fits on one line
-    desc: 'Volcanic plateau coffee processed semi-washed (Giling Basah), producing a distinctly syrupy, full body.',
+    desc: 'Volcanic plateau coffee processed semi washed (Giling Basah), producing a distinctly syrupy, full body.',
     tags: ['Smoky', 'Dark Chocolate', 'Spice', 'Syrupy Body'],
     stamp: undefined,
   },
@@ -47,7 +47,7 @@ const origins = [
     name: 'Java Preanger',
     image: 'origin-bandung.jpg',
     region: 'West Java',
-    altitude: '1,200–1,500 masl',
+    altitude: '1,200 to 1,500 masl',
     process: 'Washed',
     variety: 'Arabica',
     desc: 'A heritage colonial era growing region in Bandung producing a smooth, approachable cup with good body.',
@@ -60,7 +60,7 @@ const origins = [
     name: 'Lampung',
     image: 'origin-lampung.jpg',
     region: 'Sumatra',
-    altitude: '400–1,000 masl',
+    altitude: '400 to 1,000 masl',
     process: 'Wet Hulled',
     variety: 'Robusta',
     desc: "Indonesia's largest Robusta region, a bold, dependable backbone for commercial blends worldwide.",
@@ -86,10 +86,10 @@ const origins = [
     name: 'Palembang',
     image: 'origin-palembang.jpg',
     region: 'South Sumatra',
-    altitude: '200–600 masl',
+    altitude: '200 to 600 masl',
     process: 'Natural',
     variety: 'Robusta',
-    desc: 'Bold lowland Robusta with a traditional tubruk style character, competitive pricing for commercial-grade buyers.',
+    desc: 'Bold lowland Robusta with a traditional tubruk style character, competitive pricing for commercial grade buyers.',
     tags: ['Bold', 'Smoky', 'Thick Mouthfeel', 'Low Acidity'],
     stamp: undefined,
   },
@@ -99,10 +99,10 @@ const origins = [
     name: 'Toraja',
     image: 'origin-toraja.jpg',
     region: 'South Sulawesi',
-    altitude: '1,400–2,000 masl',
+    altitude: '1,400 to 2,000 masl',
     process: 'Wet Hulled',
     variety: 'Arabica',
-    desc: "Grown in the volcanic highlands of Tana Toraja, one of Indonesia's most celebrated specialty origins alongside Sumatra Mandheling and Java. Wet-hulled for a thick, velvety body and a long, mellow finish.",
+    desc: "Grown in the volcanic highlands of Tana Toraja, one of Indonesia's most celebrated specialty origins alongside Sumatra Mandheling and Java. Wet hulled for a thick, velvety body and a long, mellow finish.",
     tags: ['Velvety Body', 'Earthy Spice', 'Chocolate Notes', 'Mellow Finish'],
     stamp: undefined,
   },
@@ -211,7 +211,7 @@ function DesktopLotCard({
             className="font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase font-semibold mb-2 whitespace-nowrap overflow-hidden"
             style={{ fontSize: '11px', letterSpacing: '0.08em', textOverflow: 'ellipsis' }}
           >
-            {origin.lot} — {origin.shortTitle}
+            {origin.lot} / {origin.shortTitle}
           </div>
 
           <div style={{ height: '1px', background: 'var(--jute)', marginBottom: '8px' }} />
@@ -340,7 +340,7 @@ function CtaCard({ index, shouldReduceMotion }: { index: number; shouldReduceMot
               textOverflow: 'ellipsis',
             }}
           >
-            LOT 08 — YOUR SELECTION
+            LOT 09 / YOUR SELECTION
           </div>
 
           {/* Dashed rule */}
@@ -438,7 +438,7 @@ function MobileLotCard({
           className="font-['IBM_Plex_Mono'] text-[var(--ink)] uppercase font-semibold mb-3 whitespace-nowrap overflow-hidden"
           style={{ fontSize: '12px', letterSpacing: '0.1em', textOverflow: 'ellipsis' }}
         >
-          {origin.lot} — {origin.name.toUpperCase()}
+          {origin.lot} / {origin.name.toUpperCase()}
         </div>
 
         <div style={{ height: '1px', background: 'var(--jute)', marginBottom: '10px' }} />
