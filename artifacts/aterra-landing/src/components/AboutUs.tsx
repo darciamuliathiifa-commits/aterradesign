@@ -33,7 +33,7 @@ export function AboutUs() {
 
           <div className="flex flex-col gap-4 font-['Archivo'] text-[var(--ink)] text-base md:text-lg leading-[1.65]">
             <p>
-              Ananda Terra Nusantara (ATERRA) is an Indonesia-based export company specializing in premium
+              Ananda Terra Nusantara (ATERRA) is an Indonesia based export company specializing in premium
               agricultural and natural commodities, including coffee, cinnamon, nutmeg, and charcoal
               briquettes. Sourced directly from smallholder farmers and trusted regional suppliers across
               Indonesia's most fertile growing regions, including Sumatra and Java.
@@ -48,7 +48,7 @@ export function AboutUs() {
           </div>
 
           <div className="flex flex-wrap gap-3 mt-2">
-            {['Direct from Farmers', 'Sustainable Sourcing', 'Farm-to-Port QC'].map((badge, i) => (
+            {['Direct from Farmers', 'Sustainable Sourcing', 'Farm to Port QC'].map((badge, i) => (
               <span
                 key={i}
                 className="px-3 py-2 border border-[var(--ink)] text-[var(--ink)] font-['IBM_Plex_Mono'] text-xs font-semibold uppercase tracking-[0.05em] rounded-none"
