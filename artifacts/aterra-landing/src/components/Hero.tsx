@@ -70,7 +70,7 @@ export function Hero() {
           className="mb-5 md:mb-6"
         >
           <span className="font-['Allerta_Stencil'] text-[var(--offwhite)]/80 text-xs md:text-base tracking-[0.18em] uppercase">
-            PT ANANDA TERRA NUSANTARA — PRODUCT OF INDONESIA
+            PT ANANDA TERRA NUSANTARA — PRODUCT OF INDONESIAN
           </span>
         </motion.div>
 
@@ -90,7 +90,7 @@ export function Hero() {
           transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className="mt-6 md:mt-8 text-[var(--offwhite)]/70 font-['IBM_Plex_Mono'] text-xs md:text-base uppercase tracking-[0.05em] max-w-[540px] leading-relaxed"
         >
-          Premium coffee, cinnamon, nutmeg & charcoal briquettes — sourced directly from smallholder
+          Premium coffee, cinnamon, nutmeg & charcoal briquettes, sourced directly from smallholder
           farmers, delivered to global markets.
         </motion.p>
 

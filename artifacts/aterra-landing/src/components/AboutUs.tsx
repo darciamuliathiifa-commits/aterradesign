@@ -35,7 +35,7 @@ export function AboutUs() {
             <p>
               Ananda Terra Nusantara (ATERRA) is an Indonesia-based export company specializing in premium
               agricultural and natural commodities, including coffee, cinnamon, nutmeg, and charcoal
-              briquettes — sourced directly from smallholder farmers and trusted regional suppliers across
+              briquettes. Sourced directly from smallholder farmers and trusted regional suppliers across
               Indonesia's most fertile growing regions, including Sumatra and Java.
             </p>
             <p>

@@ -13,7 +13,7 @@ const services = [
     icon: Truck,
     title: 'Logistics & Tracking',
     description:
-      'End-to-end shipment coordination via Tanjung Priok (Jakarta) and Belawan (Medan), with real-time tracking and documentation support.',
+      'End to end shipment coordination with real time tracking and documentation support.',
   },
   {
     icon: Warehouse,

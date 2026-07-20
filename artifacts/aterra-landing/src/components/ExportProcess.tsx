@@ -15,7 +15,7 @@ const steps = [
   {
     num: '02.',
     title: 'MILLING & GRADING',
-    desc: 'Wet-hulled or washed processing at our certified dry mill in Medan. Screen 15+ grading and defect sorting to SCA standards.',
+    desc: 'Wet hulled or washed processing at our certified dry mill in Medan. Screen 15+ grading and defect sorting to SCA standards.',
     chip: 'SCREEN 15+ / SCA STANDARD',
     image: 'milling.jpg',
     imageAlt: 'Coffee milling and grading at the dry mill in Medan',

@@ -28,11 +28,11 @@ const pins: Pin[] = [
   { num: '01', name: 'KERINCI',    region: 'JAMBI',       x: 144.7, y: 178.7, lx: -14, ly: 4,   anchor: 'end' },
   { num: '02', name: 'PAGAR ALAM', region: 'PALEMBANG',   x: 186.2, y: 223.8, lx: -14, ly: 4,   anchor: 'end' },
   { num: '03', name: 'TANGGAMUS',  region: 'LAMPUNG',     x: 215.3, y: 252.8, lx: -14, ly: 10,  anchor: 'end' },
-  { num: '04', name: 'BANJARAN',   region: 'JAWA BARAT',  x: 278.5, y: 288.3, lx: -6,  ly: 24,  anchor: 'middle' },
-  { num: '05', name: 'IJEN',       region: 'JAWA TIMUR',  x: 424.0, y: 305.5, lx: 4,   ly: -16, anchor: 'middle' },
-  { num: '06', name: 'JEMBER',     region: 'JAWA TIMUR',  x: 404.5, y: 316.0, lx: -22, ly: 24,  anchor: 'middle' },
+  { num: '04', name: 'BANJARAN',   region: 'WEST JAVA',  x: 278.5, y: 288.3, lx: -6,  ly: 24,  anchor: 'middle' },
+  { num: '05', name: 'IJEN',       region: 'EAST JAVA',  x: 424.0, y: 305.5, lx: 4,   ly: -16, anchor: 'middle' },
+  { num: '06', name: 'JEMBER',     region: 'EAST JAVA',  x: 404.5, y: 316.0, lx: -22, ly: 24,  anchor: 'middle' },
   { num: '07', name: 'KINTAMANI',  region: 'BALI',        x: 443.0, y: 313.8, lx: 14,  ly: 22,  anchor: 'start' },
-  { num: '08', name: 'TORAJA',     region: 'SULAWESI SELATAN', x: 538.9, y: 203.8, lx: 14, ly: 4, anchor: 'start' },
+  { num: '08', name: 'TORAJA',     region: 'SOUTH SULAWESI', x: 538.9, y: 203.8, lx: 14, ly: 4, anchor: 'start' },
 ];
 
 function MapMarker({
