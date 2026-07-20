@@ -33,12 +33,12 @@ export function Footer() {
 
           {/* Office location — plain text */}
           <p className="font-['IBM_Plex_Mono'] text-[var(--offwhite)]/80 text-sm uppercase tracking-[0.05em] leading-[1.7] md:max-w-lg md:mx-auto">
-            EXPORT OFFICE: KOMPLEK GRIYA JATIPUTRA NO. 101, RT 004 RW 013, PASIRJATI, KEC. UJUNG BERUNG, KOTA BANDUNG — JAWA BARAT 40616
+            EXPORT OFFICE: CLUSTER UJUNG BERUNG INDAH, JL. SEGAR DALAM NO. E-3, RT.07/RW.11, CIGENDING, KEC. UJUNG BERUNG, KOTA BANDUNG, JAWA BARAT 40611
           </p>
 
           {/* Email — full-width tappable row on mobile */}
           <a
-            href="mailto:anandaterranusantara@gmail.com"
+            href="mailto:admin@anandaterranusantara.com"
             className="flex items-center gap-3 md:justify-center text-[var(--offwhite)] active:text-[var(--jute)] hover:text-[var(--jute)] transition-colors"
             style={{ minHeight: '44px' }}
           >
@@ -46,7 +46,7 @@ export function Footer() {
               EMAIL
             </span>
             <span className="font-['IBM_Plex_Mono'] text-sm uppercase tracking-[0.04em] break-all">
-              ANANDATERRANUSANTARA@GMAIL.COM
+              ADMIN@ANANDATERRANUSANTARA.COM
             </span>
           </a>
 

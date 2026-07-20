@@ -32,6 +32,7 @@ const pins: Pin[] = [
   { num: '05', name: 'IJEN',       region: 'JAWA TIMUR',  x: 424.0, y: 305.5, lx: 4,   ly: -16, anchor: 'middle' },
   { num: '06', name: 'JEMBER',     region: 'JAWA TIMUR',  x: 404.5, y: 316.0, lx: -22, ly: 24,  anchor: 'middle' },
   { num: '07', name: 'KINTAMANI',  region: 'BALI',        x: 443.0, y: 313.8, lx: 14,  ly: 22,  anchor: 'start' },
+  { num: '08', name: 'TORAJA',     region: 'SULAWESI SELATAN', x: 538.9, y: 203.8, lx: 14, ly: 4, anchor: 'start' },
 ];
 
 function MapMarker({
@@ -155,7 +156,7 @@ export function OriginMap() {
               ORIGIN MAP
             </h2>
             <p className="font-['IBM_Plex_Mono'] text-[var(--ink)]/60 text-sm uppercase tracking-[0.05em]">
-              Seven growing regions across the Indonesian archipelago.
+              Eight growing regions across the Indonesian archipelago.
             </p>
           </div>
         </motion.div>
@@ -178,7 +179,7 @@ export function OriginMap() {
               xmlns="http://www.w3.org/2000/svg"
               className="w-full h-auto block"
               role="img"
-              aria-label="Map of Indonesia marking seven coffee growing regions: Kerinci in Jambi, Pagar Alam in Palembang, Tanggamus in Lampung, Banjaran in West Java, Ijen and Jember in East Java, and Kintamani in Bali"
+              aria-label="Map of Indonesia marking eight coffee growing regions: Kerinci in Jambi, Pagar Alam in Palembang, Tanggamus in Lampung, Banjaran in West Java, Ijen and Jember in East Java, Kintamani in Bali, and Toraja in South Sulawesi"
             >
               {/* Chart annotation */}
               <text

@@ -59,7 +59,7 @@ export function ExportProcess() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="mb-16 md:mb-20 flex flex-col gap-6"
+          className="mb-8 md:mb-10 flex flex-col gap-6"
         >
           <div className="flex items-center gap-4">
             <span className="font-['IBM_Plex_Mono'] text-[var(--jute)] uppercase tracking-[0.1em] text-sm font-semibold whitespace-nowrap">
@@ -100,7 +100,7 @@ export function ExportProcess() {
               transition={
                 shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.1 }
               }
-              className="py-20 md:py-24"
+              className="py-10 md:py-12"
             >
               {/* ── MOBILE layout: vertical stacked ── */}
               <div className="flex flex-col gap-5 lg:hidden">

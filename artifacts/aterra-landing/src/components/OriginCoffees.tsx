@@ -93,6 +93,19 @@ const origins = [
     tags: ['Bold', 'Smoky', 'Thick Mouthfeel', 'Low Acidity'],
     stamp: undefined,
   },
+  {
+    lot: 'LOT 08',
+    shortTitle: 'TORAJA',
+    name: 'Toraja',
+    image: 'origin-toraja.jpg',
+    region: 'South Sulawesi',
+    altitude: '1,400–2,000 masl',
+    process: 'Wet Hulled',
+    variety: 'Arabica',
+    desc: "Grown in the volcanic highlands of Tana Toraja, one of Indonesia's most celebrated specialty origins alongside Sumatra Mandheling and Java. Wet-hulled for a thick, velvety body and a long, mellow finish.",
+    tags: ['Velvety Body', 'Earthy Spice', 'Chocolate Notes', 'Mellow Finish'],
+    stamp: undefined,
+  },
 ];
 
 type Origin = (typeof origins)[0];
@@ -555,12 +568,12 @@ export function OriginCoffees() {
               ORIGIN COFFEES
             </h2>
             <p className="font-['IBM_Plex_Mono'] text-[var(--offwhite)]/60 text-sm uppercase tracking-[0.05em]">
-              Seven distinct origins, one standard of quality.
+              Eight distinct origins, one standard of quality.
             </p>
           </div>
         </motion.div>
 
-        {/* Mobile: horizontal snap carousel (7 origin cards only) */}
+        {/* Mobile: horizontal snap carousel (8 origin cards only) */}
         {isMobile ? (
           <div className="flex flex-col gap-4">
             <div
